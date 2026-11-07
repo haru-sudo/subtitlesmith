@@ -13,7 +13,7 @@
 ![FFmpeg](https://img.shields.io/badge/FFmpeg-007808?logo=ffmpeg&logoColor=white)
 ![License](https://img.shields.io/badge/License-AGPL--3.0-blue)
 
-[デモページ](https://haru-sudo.github.io/subtitlesmith2/)
+[デモページ](https://haru-sudo.github.io/subtitlesmith/)
 
 </div>
 
@@ -130,7 +130,7 @@ flowchart LR
 リポジトリの中身を Web 公開ディレクトリ（例: `public_html/subtitlesmith/`）にそのまま置きます。
 
 ```bash
-git clone https://github.com/haru-sudo/subtitlesmith2.git subtitlesmith
+git clone https://github.com/haru-sudo/subtitlesmith.git subtitlesmith
 ```
 
 Apache では同梱の `.htaccess` が、`src/` `config/` `templates/` `python/` `logs/` `storage/` などへの直アクセスを遮断します。
@@ -356,9 +356,9 @@ rsync -az --delete --exclude-from=.gitignore --exclude=.git ./ user@example.com:
 
 ## コントリビュート
 
-不具合の報告や機能の提案は [Issues](https://github.com/haru-sudo/subtitlesmith2/issues) から、テンプレートに沿ってお願いします。
+不具合の報告や機能の提案は [Issues](https://github.com/haru-sudo/subtitlesmith/issues) から、テンプレートに沿ってお願いします。
 Pull Request は `main` に向けて作成してください（`main` へ直接 push はできません）。
-セキュリティ上の問題は Issue に書かず、[非公開の報告](https://github.com/haru-sudo/subtitlesmith2/security/advisories/new)を使ってください。
+セキュリティ上の問題は Issue に書かず、[非公開の報告](https://github.com/haru-sudo/subtitlesmith/security/advisories/new)を使ってください。
 
 ## ライセンス
 

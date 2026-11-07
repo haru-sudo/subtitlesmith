@@ -13,8 +13,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 DOCS = os.path.join(ROOT, 'docs')
 STORAGE = sys.argv[1]
 ORIGIN = os.environ.get('DEMO_ORIGIN', 'http://127.0.0.1:8099')
-BASE = os.environ.get('DEMO_BASE', '/subtitlesmith2')
-REPO_URL = os.environ.get('DEMO_REPO_URL', 'https://github.com/haru-sudo/subtitlesmith2')
+BASE = os.environ.get('DEMO_BASE', '/subtitlesmith')
+REPO_URL = os.environ.get('DEMO_REPO_URL', 'https://github.com/haru-sudo/subtitlesmith')
 VIDEOS = {1: ['ja', 'zh-Hans'], 2: ['ja']}
 THUMBS = {1: 'demo1.jpg', 2: 'demo2.jpg'}
 

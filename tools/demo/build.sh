@@ -11,8 +11,8 @@ ROOT=$(pwd)
 TMP=$(mktemp -d)
 PORT=${DEMO_PORT:-8099}
 # GitHub Pages の公開パス（https://<user>.github.io/<repo>/ の /<repo>）とリポジトリURL
-export DEMO_BASE=${DEMO_BASE:-/subtitlesmith2}
-export DEMO_REPO_URL=${DEMO_REPO_URL:-https://github.com/haru-sudo/subtitlesmith2}
+export DEMO_BASE=${DEMO_BASE:-/subtitlesmith}
+export DEMO_REPO_URL=${DEMO_REPO_URL:-https://github.com/haru-sudo/subtitlesmith}
 CFG=config/config.php
 BACKUP=""
 cleanup() {
