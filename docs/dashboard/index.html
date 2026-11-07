@@ -7,28 +7,28 @@
     <meta name="theme-color" content="#f6f7f9">
     <meta name="format-detection" content="telephone=no">
     <title>ダッシュボード</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/subtitlesmith2/assets/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="64x64" href="/subtitlesmith2/assets/favicon.png">
-    <link rel="apple-touch-icon" href="/subtitlesmith2/assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="/subtitlesmith2/assets/css/demo.css">
-    <script src="/subtitlesmith2/assets/js/demo-data.js"></script>
-    <script src="/subtitlesmith2/assets/js/demo.js"></script>
-    <link rel="stylesheet" href="/subtitlesmith2/assets/css/app.css">
-    <script>window.APP_BASE = "\/subtitlesmith2"; window.APP_LATEST_NEWS = "";</script>
-    <script src="/subtitlesmith2/assets/js/common.js"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/subtitlesmith/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/subtitlesmith/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/subtitlesmith/assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="/subtitlesmith/assets/css/demo.css">
+    <script src="/subtitlesmith/assets/js/demo-data.js"></script>
+    <script src="/subtitlesmith/assets/js/demo.js"></script>
+    <link rel="stylesheet" href="/subtitlesmith/assets/css/app.css">
+    <script>window.APP_BASE = "\/subtitlesmith"; window.APP_LATEST_NEWS = "";</script>
+    <script src="/subtitlesmith/assets/js/common.js"></script>
 </head>
 <body>
     <header class="topbar">
-        <a class="brand" href="/subtitlesmith2/dashboard/">subtitlesmith</a>
+        <a class="brand" href="/subtitlesmith/dashboard/">subtitlesmith</a>
         <nav class="topnav">
-            <a href="/subtitlesmith2/dashboard/">ダッシュボード</a>
-            <a href="/subtitlesmith2/glossary/">用語集</a>
-            <a href="/subtitlesmith2/memory/">翻訳メモリ</a>
-            <a href="/subtitlesmith2/settings/">設定</a>
-            <a href="/subtitlesmith2/news/" class="nav-news">お知らせ<span class="nav-dot" id="newsDot" hidden aria-label="未読のお知らせがあります"></span></a>
-            <a href="/subtitlesmith2/health/">状態</a>
+            <a href="/subtitlesmith/dashboard/">ダッシュボード</a>
+            <a href="/subtitlesmith/glossary/">用語集</a>
+            <a href="/subtitlesmith/memory/">翻訳メモリ</a>
+            <a href="/subtitlesmith/settings/">設定</a>
+            <a href="/subtitlesmith/news/" class="nav-news">お知らせ<span class="nav-dot" id="newsDot" hidden aria-label="未読のお知らせがあります"></span></a>
+            <a href="/subtitlesmith/health/">状態</a>
                             <span class="muted user-email">デモユーザー</span>
-                        <form action="/subtitlesmith2/logout" method="post" class="inline">
+                        <form action="/subtitlesmith/logout" method="post" class="inline">
                 <button type="submit" class="link-btn">ログアウト</button>
             </form>
         </nav>
@@ -37,7 +37,7 @@
 <main class="container">
     <div class="page-head">
     <div class="breadcrumb">
-        <a href="/subtitlesmith2/dashboard/">ホーム</a>
+        <a href="/subtitlesmith/dashboard/">ホーム</a>
             </div>
     <div class="head-actions">
         <button class="btn" id="newFolderBtn">＋ フォルダ</button>
@@ -48,22 +48,22 @@
 <!-- サブフォルダ -->
     <div class="folder-grid">
                     <div class="folder-tile">
-                <a class="folder-link" href="/subtitlesmith2/dashboard/folder-2/"><svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M1.5 3.5A1.5 1.5 0 0 1 3 2h3.2l1.6 1.8H13A1.5 1.5 0 0 1 14.5 5.3v6.2A1.5 1.5 0 0 1 13 13H3a1.5 1.5 0 0 1-1.5-1.5z"/></svg> 社内研修</a>
+                <a class="folder-link" href="/subtitlesmith/dashboard/folder-2/"><svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M1.5 3.5A1.5 1.5 0 0 1 3 2h3.2l1.6 1.8H13A1.5 1.5 0 0 1 14.5 5.3v6.2A1.5 1.5 0 0 1 13 13H3a1.5 1.5 0 0 1-1.5-1.5z"/></svg> 社内研修</a>
                 <div class="folder-actions">
                     <button type="button" class="link-btn"
                             data-rename="2" data-name="社内研修">名前変更</button>
-                    <form method="post" action="/subtitlesmith2/folders/2/delete" class="inline"
+                    <form method="post" action="/subtitlesmith/folders/2/delete" class="inline"
                           onsubmit="return confirm('フォルダ「社内研修」を削除しますか？(中の動画はルートに戻ります)');">
                         <button type="submit" class="link-btn danger">削除</button>
                     </form>
                 </div>
             </div>
                     <div class="folder-tile">
-                <a class="folder-link" href="/subtitlesmith2/dashboard/folder-1/"><svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M1.5 3.5A1.5 1.5 0 0 1 3 2h3.2l1.6 1.8H13A1.5 1.5 0 0 1 14.5 5.3v6.2A1.5 1.5 0 0 1 13 13H3a1.5 1.5 0 0 1-1.5-1.5z"/></svg> 製品紹介</a>
+                <a class="folder-link" href="/subtitlesmith/dashboard/folder-1/"><svg class="ico" viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M1.5 3.5A1.5 1.5 0 0 1 3 2h3.2l1.6 1.8H13A1.5 1.5 0 0 1 14.5 5.3v6.2A1.5 1.5 0 0 1 13 13H3a1.5 1.5 0 0 1-1.5-1.5z"/></svg> 製品紹介</a>
                 <div class="folder-actions">
                     <button type="button" class="link-btn"
                             data-rename="1" data-name="製品紹介">名前変更</button>
-                    <form method="post" action="/subtitlesmith2/folders/1/delete" class="inline"
+                    <form method="post" action="/subtitlesmith/folders/1/delete" class="inline"
                           onsubmit="return confirm('フォルダ「製品紹介」を削除しますか？(中の動画はルートに戻ります)');">
                         <button type="submit" class="link-btn danger">削除</button>
                     </form>
@@ -74,9 +74,9 @@
 <!-- 動画 -->
 <div id="videoGrid" class="video-grid">
                         <div class="card" data-video-id="1">
-                <a class="card-link" href="/subtitlesmith2/videos/1/">
+                <a class="card-link" href="/subtitlesmith/videos/1/">
                     <div class="thumb">
-                                                    <img src="/subtitlesmith2/storage/thumbs/demo1.jpg" alt="" loading="lazy" decoding="async">
+                                                    <img src="/subtitlesmith/storage/thumbs/demo1.jpg" alt="" loading="lazy" decoding="async">
                                             </div>
                     <div class="card-body">
                         <div class="card-title">クラウド設定ガイド 第1回</div>
@@ -107,7 +107,7 @@
             </div>
 
 <!-- 新規フォルダ（隠しフォーム + JSでプロンプト） -->
-<form id="newFolderForm" method="post" action="/subtitlesmith2/folders" hidden>
+<form id="newFolderForm" method="post" action="/subtitlesmith/folders" hidden>
     <input type="hidden" name="name" value="">
     <input type="hidden" name="parent_id" value="">
 </form>
@@ -361,10 +361,10 @@
     </div>
 </div>
 
-<script src="/subtitlesmith2/assets/js/dashboard.js"></script>
+<script src="/subtitlesmith/assets/js/dashboard.js"></script>
 </main>
 <footer class="site-footer muted">
-    <a href="https://github.com/haru-sudo/subtitlesmith2" rel="noopener">ソースコード</a>（GNU AGPL-3.0）
+    <a href="https://github.com/haru-sudo/subtitlesmith" rel="noopener">ソースコード</a>（GNU AGPL-3.0）
 </footer>
 </body>
 </html>

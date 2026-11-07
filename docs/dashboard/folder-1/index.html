@@ -7,28 +7,28 @@
     <meta name="theme-color" content="#f6f7f9">
     <meta name="format-detection" content="telephone=no">
     <title>ダッシュボード</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/subtitlesmith2/assets/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="64x64" href="/subtitlesmith2/assets/favicon.png">
-    <link rel="apple-touch-icon" href="/subtitlesmith2/assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="/subtitlesmith2/assets/css/demo.css">
-    <script src="/subtitlesmith2/assets/js/demo-data.js"></script>
-    <script src="/subtitlesmith2/assets/js/demo.js"></script>
-    <link rel="stylesheet" href="/subtitlesmith2/assets/css/app.css">
-    <script>window.APP_BASE = "\/subtitlesmith2"; window.APP_LATEST_NEWS = "";</script>
-    <script src="/subtitlesmith2/assets/js/common.js"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/subtitlesmith/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/subtitlesmith/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/subtitlesmith/assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="/subtitlesmith/assets/css/demo.css">
+    <script src="/subtitlesmith/assets/js/demo-data.js"></script>
+    <script src="/subtitlesmith/assets/js/demo.js"></script>
+    <link rel="stylesheet" href="/subtitlesmith/assets/css/app.css">
+    <script>window.APP_BASE = "\/subtitlesmith"; window.APP_LATEST_NEWS = "";</script>
+    <script src="/subtitlesmith/assets/js/common.js"></script>
 </head>
 <body>
     <header class="topbar">
-        <a class="brand" href="/subtitlesmith2/dashboard/">subtitlesmith</a>
+        <a class="brand" href="/subtitlesmith/dashboard/">subtitlesmith</a>
         <nav class="topnav">
-            <a href="/subtitlesmith2/dashboard/">ダッシュボード</a>
-            <a href="/subtitlesmith2/glossary/">用語集</a>
-            <a href="/subtitlesmith2/memory/">翻訳メモリ</a>
-            <a href="/subtitlesmith2/settings/">設定</a>
-            <a href="/subtitlesmith2/news/" class="nav-news">お知らせ<span class="nav-dot" id="newsDot" hidden aria-label="未読のお知らせがあります"></span></a>
-            <a href="/subtitlesmith2/health/">状態</a>
+            <a href="/subtitlesmith/dashboard/">ダッシュボード</a>
+            <a href="/subtitlesmith/glossary/">用語集</a>
+            <a href="/subtitlesmith/memory/">翻訳メモリ</a>
+            <a href="/subtitlesmith/settings/">設定</a>
+            <a href="/subtitlesmith/news/" class="nav-news">お知らせ<span class="nav-dot" id="newsDot" hidden aria-label="未読のお知らせがあります"></span></a>
+            <a href="/subtitlesmith/health/">状態</a>
                             <span class="muted user-email">デモユーザー</span>
-                        <form action="/subtitlesmith2/logout" method="post" class="inline">
+                        <form action="/subtitlesmith/logout" method="post" class="inline">
                 <button type="submit" class="link-btn">ログアウト</button>
             </form>
         </nav>
@@ -37,9 +37,9 @@
 <main class="container">
     <div class="page-head">
     <div class="breadcrumb">
-        <a href="/subtitlesmith2/dashboard/">ホーム</a>
+        <a href="/subtitlesmith/dashboard/">ホーム</a>
                     <span class="sep">/</span>
-            <a href="/subtitlesmith2/dashboard/folder-1/">製品紹介</a>
+            <a href="/subtitlesmith/dashboard/folder-1/">製品紹介</a>
             </div>
     <div class="head-actions">
         <button class="btn" id="newFolderBtn">＋ フォルダ</button>
@@ -55,7 +55,7 @@
     </div>
 
 <!-- 新規フォルダ（隠しフォーム + JSでプロンプト） -->
-<form id="newFolderForm" method="post" action="/subtitlesmith2/folders" hidden>
+<form id="newFolderForm" method="post" action="/subtitlesmith/folders" hidden>
     <input type="hidden" name="name" value="">
     <input type="hidden" name="parent_id" value="1">
 </form>
@@ -309,10 +309,10 @@
     </div>
 </div>
 
-<script src="/subtitlesmith2/assets/js/dashboard.js"></script>
+<script src="/subtitlesmith/assets/js/dashboard.js"></script>
 </main>
 <footer class="site-footer muted">
-    <a href="https://github.com/haru-sudo/subtitlesmith2" rel="noopener">ソースコード</a>（GNU AGPL-3.0）
+    <a href="https://github.com/haru-sudo/subtitlesmith" rel="noopener">ソースコード</a>（GNU AGPL-3.0）
 </footer>
 </body>
 </html>

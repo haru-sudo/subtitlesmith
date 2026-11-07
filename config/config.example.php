@@ -23,7 +23,7 @@ return [
     // ソースコードの公開先（全ページのフッターにリンクを表示）。
     //   本ソフトウェアは GNU AGPL-3.0 です。改変して公開・提供する場合は、利用者が改変後の
     //   ソースコードを入手できるよう、ここを改変版のリポジトリURLに変更してください。
-    'source_url' => 'https://github.com/haru-sudo/subtitlesmith2',
+    'source_url' => 'https://github.com/haru-sudo/subtitlesmith',
 
     // ---- 動画の分野（翻訳・用語抽出・説明文生成の AI に伝える） ----
     // 扱う動画の分野。空なら汎用の字幕翻訳者として振る舞います。

@@ -7,28 +7,28 @@
     <meta name="theme-color" content="#f6f7f9">
     <meta name="format-detection" content="telephone=no">
     <title>用語集</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/subtitlesmith2/assets/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="64x64" href="/subtitlesmith2/assets/favicon.png">
-    <link rel="apple-touch-icon" href="/subtitlesmith2/assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="/subtitlesmith2/assets/css/demo.css">
-    <script src="/subtitlesmith2/assets/js/demo-data.js"></script>
-    <script src="/subtitlesmith2/assets/js/demo.js"></script>
-    <link rel="stylesheet" href="/subtitlesmith2/assets/css/app.css">
-    <script>window.APP_BASE = "\/subtitlesmith2"; window.APP_LATEST_NEWS = "";</script>
-    <script src="/subtitlesmith2/assets/js/common.js"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/subtitlesmith/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/subtitlesmith/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/subtitlesmith/assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="/subtitlesmith/assets/css/demo.css">
+    <script src="/subtitlesmith/assets/js/demo-data.js"></script>
+    <script src="/subtitlesmith/assets/js/demo.js"></script>
+    <link rel="stylesheet" href="/subtitlesmith/assets/css/app.css">
+    <script>window.APP_BASE = "\/subtitlesmith"; window.APP_LATEST_NEWS = "";</script>
+    <script src="/subtitlesmith/assets/js/common.js"></script>
 </head>
 <body>
     <header class="topbar">
-        <a class="brand" href="/subtitlesmith2/dashboard/">subtitlesmith</a>
+        <a class="brand" href="/subtitlesmith/dashboard/">subtitlesmith</a>
         <nav class="topnav">
-            <a href="/subtitlesmith2/dashboard/">ダッシュボード</a>
-            <a href="/subtitlesmith2/glossary/">用語集</a>
-            <a href="/subtitlesmith2/memory/">翻訳メモリ</a>
-            <a href="/subtitlesmith2/settings/">設定</a>
-            <a href="/subtitlesmith2/news/" class="nav-news">お知らせ<span class="nav-dot" id="newsDot" hidden aria-label="未読のお知らせがあります"></span></a>
-            <a href="/subtitlesmith2/health/">状態</a>
+            <a href="/subtitlesmith/dashboard/">ダッシュボード</a>
+            <a href="/subtitlesmith/glossary/">用語集</a>
+            <a href="/subtitlesmith/memory/">翻訳メモリ</a>
+            <a href="/subtitlesmith/settings/">設定</a>
+            <a href="/subtitlesmith/news/" class="nav-news">お知らせ<span class="nav-dot" id="newsDot" hidden aria-label="未読のお知らせがあります"></span></a>
+            <a href="/subtitlesmith/health/">状態</a>
                             <span class="muted user-email">デモユーザー</span>
-                        <form action="/subtitlesmith2/logout" method="post" class="inline">
+                        <form action="/subtitlesmith/logout" method="post" class="inline">
                 <button type="submit" class="link-btn">ログアウト</button>
             </form>
         </nav>
@@ -57,7 +57,7 @@
                         <div>原: The region you choose here affects latency.</div>                        <div>訳: ここで選ぶリージョンは遅延に影響します</div>                    </div>
                                 <div class="cand-actions">
                     <form class="cand-approve" method="post"
-                          action="/subtitlesmith2/glossary/candidates/1/approve">
+                          action="/subtitlesmith/glossary/candidates/1/approve">
                         <input type="hidden" name="source_lang" value="en">
                         <input type="text" name="source_term" value="latency" required>
                         <span class="time-arrow">→</span>
@@ -78,7 +78,7 @@
                         <input type="text" name="target_term" placeholder="正しい訳語を入力" required>
                         <button class="btn primary" type="submit">承認</button>
                     </form>
-                    <form method="post" action="/subtitlesmith2/glossary/candidates/1/reject"
+                    <form method="post" action="/subtitlesmith/glossary/candidates/1/reject"
                           onsubmit="return confirm('この候補を却下しますか？（今後再提案されません）');">
                         <button class="btn" type="submit">却下</button>
                     </form>
@@ -94,7 +94,7 @@
                         <div>原: check the labels by hand</div>                        <div>訳: ラベルを手で確認します</div>                    </div>
                                 <div class="cand-actions">
                     <form class="cand-approve" method="post"
-                          action="/subtitlesmith2/glossary/candidates/2/approve">
+                          action="/subtitlesmith/glossary/candidates/2/approve">
                         <input type="hidden" name="source_lang" value="en">
                         <input type="text" name="source_term" value="labels" required>
                         <span class="time-arrow">→</span>
@@ -115,7 +115,7 @@
                         <input type="text" name="target_term" placeholder="正しい訳語を入力" required>
                         <button class="btn primary" type="submit">承認</button>
                     </form>
-                    <form method="post" action="/subtitlesmith2/glossary/candidates/2/reject"
+                    <form method="post" action="/subtitlesmith/glossary/candidates/2/reject"
                           onsubmit="return confirm('この候補を却下しますか？（今後再提案されません）');">
                         <button class="btn" type="submit">却下</button>
                     </form>
@@ -124,7 +124,7 @@
             </div>
 </section>
 
-<form class="gloss-add" method="post" action="/subtitlesmith2/glossary">
+<form class="gloss-add" method="post" action="/subtitlesmith/glossary">
     <select name="source_lang">
                     <option value="ja" >日本語</option>
                     <option value="zh-Hans" >中国語（簡体字）</option>
@@ -181,7 +181,7 @@
 
 <div class="gloss-list">
                         <div class="gloss-item">
-                <form class="gloss-row" method="post" action="/subtitlesmith2/glossary/5">
+                <form class="gloss-row" method="post" action="/subtitlesmith/glossary/5">
                     <select name="source_lang">
                                                     <option value="ja" >日本語</option>
                                                     <option value="zh-Hans" >中国語（簡体字）</option>
@@ -235,13 +235,13 @@
                     <input type="text" name="note" value="" placeholder="メモ">
                     <button class="btn" type="submit">更新</button>
                 </form>
-                <form method="post" action="/subtitlesmith2/glossary/5/delete"
+                <form method="post" action="/subtitlesmith/glossary/5/delete"
                       onsubmit="return confirm('削除しますか？');">
                     <button class="btn danger" type="submit">削除</button>
                 </form>
             </div>
                     <div class="gloss-item">
-                <form class="gloss-row" method="post" action="/subtitlesmith2/glossary/6">
+                <form class="gloss-row" method="post" action="/subtitlesmith/glossary/6">
                     <select name="source_lang">
                                                     <option value="ja" >日本語</option>
                                                     <option value="zh-Hans" >中国語（簡体字）</option>
@@ -295,13 +295,13 @@
                     <input type="text" name="note" value="" placeholder="メモ">
                     <button class="btn" type="submit">更新</button>
                 </form>
-                <form method="post" action="/subtitlesmith2/glossary/6/delete"
+                <form method="post" action="/subtitlesmith/glossary/6/delete"
                       onsubmit="return confirm('削除しますか？');">
                     <button class="btn danger" type="submit">削除</button>
                 </form>
             </div>
                     <div class="gloss-item">
-                <form class="gloss-row" method="post" action="/subtitlesmith2/glossary/2">
+                <form class="gloss-row" method="post" action="/subtitlesmith/glossary/2">
                     <select name="source_lang">
                                                     <option value="ja" >日本語</option>
                                                     <option value="zh-Hans" >中国語（簡体字）</option>
@@ -355,13 +355,13 @@
                     <input type="text" name="note" value="" placeholder="メモ">
                     <button class="btn" type="submit">更新</button>
                 </form>
-                <form method="post" action="/subtitlesmith2/glossary/2/delete"
+                <form method="post" action="/subtitlesmith/glossary/2/delete"
                       onsubmit="return confirm('削除しますか？');">
                     <button class="btn danger" type="submit">削除</button>
                 </form>
             </div>
                     <div class="gloss-item">
-                <form class="gloss-row" method="post" action="/subtitlesmith2/glossary/4">
+                <form class="gloss-row" method="post" action="/subtitlesmith/glossary/4">
                     <select name="source_lang">
                                                     <option value="ja" >日本語</option>
                                                     <option value="zh-Hans" >中国語（簡体字）</option>
@@ -415,13 +415,13 @@
                     <input type="text" name="note" value="" placeholder="メモ">
                     <button class="btn" type="submit">更新</button>
                 </form>
-                <form method="post" action="/subtitlesmith2/glossary/4/delete"
+                <form method="post" action="/subtitlesmith/glossary/4/delete"
                       onsubmit="return confirm('削除しますか？');">
                     <button class="btn danger" type="submit">削除</button>
                 </form>
             </div>
                     <div class="gloss-item">
-                <form class="gloss-row" method="post" action="/subtitlesmith2/glossary/3">
+                <form class="gloss-row" method="post" action="/subtitlesmith/glossary/3">
                     <select name="source_lang">
                                                     <option value="ja" >日本語</option>
                                                     <option value="zh-Hans" >中国語（簡体字）</option>
@@ -475,13 +475,13 @@
                     <input type="text" name="note" value="画面上の表記に合わせる" placeholder="メモ">
                     <button class="btn" type="submit">更新</button>
                 </form>
-                <form method="post" action="/subtitlesmith2/glossary/3/delete"
+                <form method="post" action="/subtitlesmith/glossary/3/delete"
                       onsubmit="return confirm('削除しますか？');">
                     <button class="btn danger" type="submit">削除</button>
                 </form>
             </div>
                     <div class="gloss-item">
-                <form class="gloss-row" method="post" action="/subtitlesmith2/glossary/1">
+                <form class="gloss-row" method="post" action="/subtitlesmith/glossary/1">
                     <select name="source_lang">
                                                     <option value="ja" >日本語</option>
                                                     <option value="zh-Hans" >中国語（簡体字）</option>
@@ -535,13 +535,13 @@
                     <input type="text" name="note" value="クラウドの地域" placeholder="メモ">
                     <button class="btn" type="submit">更新</button>
                 </form>
-                <form method="post" action="/subtitlesmith2/glossary/1/delete"
+                <form method="post" action="/subtitlesmith/glossary/1/delete"
                       onsubmit="return confirm('削除しますか？');">
                     <button class="btn danger" type="submit">削除</button>
                 </form>
             </div>
                     <div class="gloss-item">
-                <form class="gloss-row" method="post" action="/subtitlesmith2/glossary/7">
+                <form class="gloss-row" method="post" action="/subtitlesmith/glossary/7">
                     <select name="source_lang">
                                                     <option value="ja" >日本語</option>
                                                     <option value="zh-Hans" >中国語（簡体字）</option>
@@ -595,7 +595,7 @@
                     <input type="text" name="note" value="" placeholder="メモ">
                     <button class="btn" type="submit">更新</button>
                 </form>
-                <form method="post" action="/subtitlesmith2/glossary/7/delete"
+                <form method="post" action="/subtitlesmith/glossary/7/delete"
                       onsubmit="return confirm('削除しますか？');">
                     <button class="btn danger" type="submit">削除</button>
                 </form>
@@ -603,7 +603,7 @@
             </div>
 </main>
 <footer class="site-footer muted">
-    <a href="https://github.com/haru-sudo/subtitlesmith2" rel="noopener">ソースコード</a>（GNU AGPL-3.0）
+    <a href="https://github.com/haru-sudo/subtitlesmith" rel="noopener">ソースコード</a>（GNU AGPL-3.0）
 </footer>
 </body>
 </html>

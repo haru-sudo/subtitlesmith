@@ -9,8 +9,8 @@
 (function () {
   'use strict';
 
-  var BASE = window.DEMO_BASE || '/subtitlesmith2';
-  var REPO_URL = window.DEMO_REPO_URL || 'https://github.com/haru-sudo/subtitlesmith2';
+  var BASE = window.DEMO_BASE || '/subtitlesmith';
+  var REPO_URL = window.DEMO_REPO_URL || 'https://github.com/haru-sudo/subtitlesmith';
   var DATA = window.DEMO_DATA || { videos: { videos: [] }, video: {}, segments: {}, load: {} };
   var STORE_KEY = 'subtitlesmith-demo-v1';
   var BLOCKED = 'デモ版ではこの操作は実行できません（実際の環境ではサーバーで処理されます）。';

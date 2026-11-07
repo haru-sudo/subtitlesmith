@@ -1,6 +1,6 @@
 /* デモ用のサンプルデータ（build_demo で実際のアプリから取得） */
-window.DEMO_BASE = "/subtitlesmith2";
-window.DEMO_REPO_URL = "https://github.com/haru-sudo/subtitlesmith2";
+window.DEMO_BASE = "/subtitlesmith";
+window.DEMO_REPO_URL = "https://github.com/haru-sudo/subtitlesmith";
 window.DEMO_DATA = {
  "videos": {
   "videos": [

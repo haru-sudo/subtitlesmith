@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: セキュリティ上の問題を非公開で報告する
-    url: https://github.com/haru-sudo/subtitlesmith2/security/advisories/new
+    url: https://github.com/haru-sudo/subtitlesmith/security/advisories/new
     about: 脆弱性は公開の Issue に書かず、こちらから報告してください。
   - name: デモページ
-    url: https://haru-sudo.github.io/subtitlesmith2/
+    url: https://haru-sudo.github.io/subtitlesmith/
     about: 実際の画面を試せます。
