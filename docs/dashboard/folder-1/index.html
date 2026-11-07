@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#f6f7f9">
+    <meta name="format-detection" content="telephone=no">
+    <title>ダッシュボード</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/subtitlesmith2/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/subtitlesmith2/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/subtitlesmith2/assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="/subtitlesmith2/assets/css/demo.css">
+    <script src="/subtitlesmith2/assets/js/demo-data.js"></script>
+    <script src="/subtitlesmith2/assets/js/demo.js"></script>
+    <link rel="stylesheet" href="/subtitlesmith2/assets/css/app.css">
+    <script>window.APP_BASE = "\/subtitlesmith2"; window.APP_LATEST_NEWS = "";</script>
+    <script src="/subtitlesmith2/assets/js/common.js"></script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/subtitlesmith2/dashboard/">subtitlesmith</a>
+        <nav class="topnav">
+            <a href="/subtitlesmith2/dashboard/">ダッシュボード</a>
+            <a href="/subtitlesmith2/glossary/">用語集</a>
+            <a href="/subtitlesmith2/memory/">翻訳メモリ</a>
+            <a href="/subtitlesmith2/settings/">設定</a>
+            <a href="/subtitlesmith2/news/" class="nav-news">お知らせ<span class="nav-dot" id="newsDot" hidden aria-label="未読のお知らせがあります"></span></a>
+            <a href="/subtitlesmith2/health/">状態</a>
+                            <span class="muted user-email">デモユーザー</span>
+                        <form action="/subtitlesmith2/logout" method="post" class="inline">
+                <button type="submit" class="link-btn">ログアウト</button>
+            </form>
+        </nav>
+    </header>
+
+<main class="container">
+    <div class="page-head">
+    <div class="breadcrumb">
+        <a href="/subtitlesmith2/dashboard/">ホーム</a>
+                    <span class="sep">/</span>
+            <a href="/subtitlesmith2/dashboard/folder-1/">製品紹介</a>
+            </div>
+    <div class="head-actions">
+        <button class="btn" id="newFolderBtn">＋ フォルダ</button>
+        <button class="btn primary" id="newBtn">＋ 新規作成</button>
+    </div>
+</div>
+
+<!-- サブフォルダ -->
+
+<!-- 動画 -->
+<div id="videoGrid" class="video-grid">
+            <p class="empty-state muted">ここには何もありません。「＋ 新規作成」で動画を追加、「＋ フォルダ」で整理できます。</p>
+    </div>
+
+<!-- 新規フォルダ（隠しフォーム + JSでプロンプト） -->
+<form id="newFolderForm" method="post" action="/subtitlesmith2/folders" hidden>
+    <input type="hidden" name="name" value="">
+    <input type="hidden" name="parent_id" value="1">
+</form>
+<form id="renameForm" method="post" action="" hidden>
+    <input type="hidden" name="name" value="">
+</form>
+
+<!-- アップロードモーダル -->
+<div class="modal-backdrop" id="uploadModal" hidden>
+    <div class="modal">
+        <h2>新規作成</h2>
+        <form id="uploadForm" class="stack">
+            <input type="hidden" name="folder_id" value="1">
+            <label>
+                タイトル
+                <input type="text" name="title" placeholder="例: 製品紹介 第1回（複数選択時は各ファイル名を使用）">
+            </label>
+            <label>
+                動画ファイル
+                <input type="file" name="video" accept="video/*" multiple required>
+                <span class="muted field-hint">複数選択できます。複数のときはファイル名がタイトルになります。</span>
+            </label>
+            <div class="model-field">
+    <span class="model-field-label">字幕の出力言語</span>
+    <div class="lang-choices">
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="ja"
+                       checked>
+                日本語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="zh-Hans"
+                       >
+                中国語（簡体字）            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="zh-Hant"
+                       >
+                中国語（繁体字）            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="ko"
+                       >
+                韓国語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="en"
+                       >
+                英語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="de"
+                       >
+                ドイツ語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="fr"
+                       >
+                フランス語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="es"
+                       >
+                スペイン語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="pt"
+                       >
+                ポルトガル語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="th"
+                       >
+                タイ語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="vi"
+                       >
+                ベトナム語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="id"
+                       >
+                インドネシア語            </label>
+            </div>
+    <span class="muted field-hint">
+        複数選べます。選んだ言語ぶんの字幕を作り、編集画面のタブで切り替えられます。
+        用語集・翻訳メモリも言語ごとに使い分けます。
+        <strong>翻訳のAPIコストは言語の数だけかかります。</strong>あとから編集画面で追加・削除もできます。
+    </span>
+</div>
+            <div class="model-field">
+    <span class="model-field-label">翻訳プロバイダ</span>
+    <div class="model-options model-options-compact provider-group" data-uid="upload">
+                    <label class="model-option selected opt-disabled">
+                <input type="radio" name="translate_provider" value="anthropic"
+                       checked>
+                <span class="model-main">
+                    <span class="model-name">Claude（Anthropic）                                                <span class="badge tag" title="設定ページでキー等の登録が必要">未設定</span>                    </span>
+                    <span class="model-note muted">最高精度。専門用語・長文脈に最も強い。プロンプトキャッシュ対応。</span>
+                </span>
+            </label>
+                    <label class="model-option  opt-disabled">
+                <input type="radio" name="translate_provider" value="gemini"
+                       >
+                <span class="model-main">
+                    <span class="model-name">Google Gemini                        <span class="badge tag recommend">無料枠あり</span>                        <span class="badge tag" title="設定ページでキー等の登録が必要">未設定</span>                    </span>
+                    <span class="model-note muted">無料枠あり（Flashは1日1,500回・要確認）。品質も高く日本語に強い。</span>
+                </span>
+            </label>
+                    <label class="model-option  opt-disabled">
+                <input type="radio" name="translate_provider" value="openai"
+                       >
+                <span class="model-main">
+                    <span class="model-name">OpenAI互換（汎用）                        <span class="badge tag recommend">無料枠あり</span>                        <span class="badge tag" title="設定ページでキー等の登録が必要">未設定</span>                    </span>
+                    <span class="model-note muted">base_URLとキーを設定して Groq / OpenRouter / DeepSeek / Grok / NVIDIA Build 等に接続。</span>
+                </span>
+            </label>
+                    <label class="model-option  ">
+                <input type="radio" name="translate_provider" value="local-llm"
+                       >
+                <span class="model-main">
+                    <span class="model-name">ローカルLLM（コスト0）                        <span class="badge tag">コスト0</span>
+                                                                    </span>
+                    <span class="model-note muted">サーバー上で小型LLM(Qwen2.5等)を実行。APIコスト0・キー不要・常駐サーバー不要。用語集・翻訳メモリ・文脈・校正がすべて効く。GPU不要(CPU・int8)。要セットアップ(ctranslate2/transformers)。</span>
+                </span>
+            </label>
+            </div>
+</div>
+
+        <div class="model-field provider-models" data-uid="upload" data-provider="anthropic" >
+        <span class="model-field-label">Claude のモデル</span>
+        <div class="model-options model-options-compact">
+                            <label class="model-option selected">
+                    <input type="radio" name="model_anthropic" value="claude-opus-5-5"
+                           data-provider="anthropic"
+                           checked >
+                    <span class="model-main">
+                        <span class="model-name">Claude Opus 5.5（推奨）</span>
+                        <span class="model-note muted">最新の最上位モデル。難しい専門表現・長い文脈に最も強い。 / 精度:最高 速度:標準 / $5.00・$25.00(入/出 100万)</span>                    </span>
+                </label>
+                    </div>
+    </div>
+        <div class="model-field provider-models" data-uid="upload" data-provider="gemini" hidden>
+        <span class="model-field-label">Gemini のモデル</span>
+        <div class="model-options model-options-compact">
+                            <label class="model-option selected">
+                    <input type="radio" name="model_gemini" value="gemini-2.5-flash"
+                           data-provider="gemini"
+                           checked disabled>
+                    <span class="model-main">
+                        <span class="model-name">Gemini 2.5 Flash</span>
+                        <span class="model-note muted">無料枠あり・高速。日本語に強い。</span>                    </span>
+                </label>
+                            <label class="model-option ">
+                    <input type="radio" name="model_gemini" value="gemini-2.5-pro"
+                           data-provider="gemini"
+                            disabled>
+                    <span class="model-main">
+                        <span class="model-name">Gemini 2.5 Pro</span>
+                        <span class="model-note muted">高精度。難しい内容向け（無料枠は少なめ）。</span>                    </span>
+                </label>
+                            <label class="model-option ">
+                    <input type="radio" name="model_gemini" value="gemini-2.0-flash"
+                           data-provider="gemini"
+                            disabled>
+                    <span class="model-main">
+                        <span class="model-name">Gemini 2.0 Flash</span>
+                        <span class="model-note muted">旧世代の高速モデル。</span>                    </span>
+                </label>
+                    </div>
+    </div>
+        
+<!-- 実際に送信する値（選択プロバイダのモデルをJSがここへ反映） -->
+<input type="hidden" name="translate_model" id="upload_model_hidden" value="claude-opus-5-5">
+            <div class="model-field">
+    <span class="model-field-label">文字起こしエンジン</span>
+    <div class="model-options model-options-compact">
+                    <label class="model-option selected">
+                <input type="radio" name="transcribe_model" value="deepgram-nova-3"
+                       checked>
+                <span class="model-main">
+                    <span class="model-name">Deepgram Nova-3                        <span class="badge tag recommend">推奨</span>                                            </span>
+                    <span class="model-note muted">既定。英語に強く、Whisper系のような無音での幻聴が出にくい。時刻つきで返り字幕向き。要 Deepgram APIキー。</span>
+                    <span class="model-specs muted">
+                        精度: 最高 ・
+                        料金: $0.004/分                    </span>
+                </span>
+            </label>
+                    <label class="model-option ">
+                <input type="radio" name="transcribe_model" value="whisper-1"
+                       >
+                <span class="model-main">
+                    <span class="model-name">Whisper (whisper-1)                                                                    </span>
+                    <span class="model-note muted">OpenAIで唯一セグメント時刻を返すモデル。字幕のタイミングが音声と合う。</span>
+                    <span class="model-specs muted">
+                        精度: 高 ・
+                        料金: $0.006/分                    </span>
+                </span>
+            </label>
+                    <label class="model-option ">
+                <input type="radio" name="transcribe_model" value="gpt-4o-transcribe"
+                       >
+                <span class="model-main">
+                    <span class="model-name">GPT-4o Transcribe                                                                    </span>
+                    <span class="model-note muted">文字の精度は最高だがセグメント時刻を返さないため、字幕用途では whisper-1 で実行されます。</span>
+                    <span class="model-specs muted">
+                        精度: 最高 ・
+                        料金: $0.006/分                    </span>
+                </span>
+            </label>
+                    <label class="model-option ">
+                <input type="radio" name="transcribe_model" value="gpt-4o-mini-transcribe"
+                       >
+                <span class="model-main">
+                    <span class="model-name">GPT-4o mini Transcribe                                                                    </span>
+                    <span class="model-note muted">上記の半額。同じくセグメント時刻を返さないため、字幕用途では whisper-1 で実行されます。</span>
+                    <span class="model-specs muted">
+                        精度: 高 ・
+                        料金: $0.003/分                    </span>
+                </span>
+            </label>
+                    <label class="model-option ">
+                <input type="radio" name="transcribe_model" value="local-whisper"
+                       >
+                <span class="model-main">
+                    <span class="model-name">ローカルWhisper（コスト0）                                                <span class="badge tag">コスト0</span>                    </span>
+                    <span class="model-note muted">サーバー上で large-v3（最高精度）を実行しAPIコストはゼロ。GPU不要(多コアCPU向けに最適化済み)。要セットアップ(faster-whisper)。</span>
+                    <span class="model-specs muted">
+                        精度: 高 ・
+                        料金: 無料（サーバー実行）                    </span>
+                </span>
+            </label>
+            </div>
+</div>
+            <label class="inline-check">
+                <input type="checkbox" name="auto_describe" value="1" checked>
+                内容（説明文）を文字起こしからAIで自動生成する
+            </label>
+            <label class="inline-check">
+                <input type="checkbox" name="kind" value="training_import">
+                学習用に取り込む（焼き込み済み字幕付き完成動画）
+            </label>
+            <label class="inline-check">
+                <input type="checkbox" name="build_glossary" value="1">
+                用語集をAIで自動登録する（APIコストがかかります・学習用のみ有効）
+            </label>
+            <p class="muted field-hint" id="uploadLimitNotice">
+                大きな動画は自動で分割してアップロードします（512MBずつ送信）。<br>
+                数GBの動画もそのまま選択できます。回線速度により時間がかかる場合があります。
+            </p>
+            <div class="progress" id="uploadProgress" hidden>
+                <div class="bar" id="uploadBar"></div>
+            </div>
+            <p class="muted upload-count" id="uploadCount" hidden></p>
+            <p class="alert" id="uploadError" hidden></p>
+            <div class="modal-actions">
+                <button type="button" class="btn" id="cancelUpload">キャンセル</button>
+                <button type="submit" class="btn primary" id="submitUpload">アップロードして開始</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/subtitlesmith2/assets/js/dashboard.js"></script>
+</main>
+<footer class="site-footer muted">
+    <a href="https://github.com/haru-sudo/subtitlesmith2" rel="noopener">ソースコード</a>（GNU AGPL-3.0）
+</footer>
+</body>
+</html>

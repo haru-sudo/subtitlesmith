@@ -1,0 +1,19 @@
+# ---- OS / ツール ----
+.DS_Store
+__pycache__/
+*.pyc
+*.log
+*.bak
+*.bak_*
+*.sqlite-wal
+*.sqlite-shm
+*.db-wal
+*.db-shm
+*.db-journal
+
+# ---- 秘密情報 ----
+/config/config.php
+
+# ---- 運用データ（動画・DB・モデル・ログなど）----
+/storage/
+/logs/

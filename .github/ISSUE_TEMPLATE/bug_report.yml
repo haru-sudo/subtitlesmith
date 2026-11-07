@@ -1,0 +1,71 @@
+name: 不具合の報告
+description: 動かない・表示がおかしいなどの不具合を報告する
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        報告ありがとうございます。API キー・パスワード・メールアドレスなどの秘密情報は書かないでください。
+        セキュリティ上の問題は Issue ではなく、Security タブの「Report a vulnerability」から非公開で報告してください。
+  - type: textarea
+    id: summary
+    attributes:
+      label: 何が起きたか
+      description: 起きたことを簡潔に書いてください。
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 再現手順
+      placeholder: |
+        1. ダッシュボードで「新規作成」を押す
+        2. 動画を選んでアップロードする
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期待した動作
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: 関係する機能
+      multiple: true
+      options:
+        - アップロード
+        - 文字起こし
+        - 翻訳
+        - 字幕エディタ
+        - 書き出し（焼き込み）
+        - 用語集・翻訳メモリ
+        - ログイン
+        - 設定・環境チェック
+        - デモページ
+        - その他
+  - type: input
+    id: version
+    attributes:
+      label: バージョン（コミット）
+      description: "使っているコミットの ID など（例: git rev-parse --short HEAD の出力）"
+  - type: textarea
+    id: environment
+    attributes:
+      label: 動作環境
+      description: 環境チェック（/health）の内容が分かると助かります。
+      placeholder: |
+        - サーバー: 共有レンタルサーバー / VPS / ローカル
+        - Web サーバー: Apache / nginx
+        - PHP: 8.3
+        - 文字起こし・翻訳のエンジン: Deepgram / Claude など
+        - ブラウザ: Chrome 130 / Safari 18 など
+  - type: textarea
+    id: logs
+    attributes:
+      label: ログ・エラーメッセージ
+      description: logs/ のエラーやブラウザのコンソールの内容など。秘密情報は伏せてください。
+      render: text

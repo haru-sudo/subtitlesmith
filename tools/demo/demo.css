@@ -1,0 +1,58 @@
+/* subtitlesmith デモ（GitHub Pages）専用の案内バー */
+body { padding-bottom: 64px; }
+
+.demo-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 10px 16px;
+    background: #1f2937;
+    color: #f9fafb;
+    font-size: 13px;
+    line-height: 1.5;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, .15);
+}
+.demo-bar-tag {
+    flex: none;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #f59e0b;
+    color: #1f2937;
+    font-weight: 700;
+    letter-spacing: .05em;
+}
+.demo-bar-text { flex: 1 1 280px; }
+.demo-bar-actions { display: flex; gap: 8px; flex: none; }
+.demo-bar-btn {
+    padding: 4px 10px;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 6px;
+    background: transparent;
+    color: #f9fafb;
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+.demo-bar-btn:hover { background: rgba(255, 255, 255, .12); }
+
+.demo-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 76px;
+    z-index: 10000;
+    transform: translateX(-50%);
+    max-width: calc(100% - 32px);
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: #111827;
+    color: #fff;
+    font-size: 13px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .25);
+}
+.demo-toast[hidden] { display: none; }

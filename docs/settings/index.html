@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#f6f7f9">
+    <meta name="format-detection" content="telephone=no">
+    <title>設定</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/subtitlesmith2/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/subtitlesmith2/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/subtitlesmith2/assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="/subtitlesmith2/assets/css/demo.css">
+    <script src="/subtitlesmith2/assets/js/demo-data.js"></script>
+    <script src="/subtitlesmith2/assets/js/demo.js"></script>
+    <link rel="stylesheet" href="/subtitlesmith2/assets/css/app.css">
+    <script>window.APP_BASE = "\/subtitlesmith2"; window.APP_LATEST_NEWS = "";</script>
+    <script src="/subtitlesmith2/assets/js/common.js"></script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/subtitlesmith2/dashboard/">subtitlesmith</a>
+        <nav class="topnav">
+            <a href="/subtitlesmith2/dashboard/">ダッシュボード</a>
+            <a href="/subtitlesmith2/glossary/">用語集</a>
+            <a href="/subtitlesmith2/memory/">翻訳メモリ</a>
+            <a href="/subtitlesmith2/settings/">設定</a>
+            <a href="/subtitlesmith2/news/" class="nav-news">お知らせ<span class="nav-dot" id="newsDot" hidden aria-label="未読のお知らせがあります"></span></a>
+            <a href="/subtitlesmith2/health/">状態</a>
+                            <span class="muted user-email">デモユーザー</span>
+                        <form action="/subtitlesmith2/logout" method="post" class="inline">
+                <button type="submit" class="link-btn">ログアウト</button>
+            </form>
+        </nav>
+    </header>
+
+<main class="container">
+    <div class="page-head">
+    <h1>設定</h1>
+</div>
+
+
+<form method="post" action="/subtitlesmith2/settings" class="settings-form stack" autocomplete="off">
+
+    <section class="settings-section">
+        <h2>APIキー</h2>
+        <p class="muted">文字起こしには OpenAI、翻訳には各サービスのキーが必要です。
+            入力欄を空のまま保存すると現在の値は変更されません。</p>
+
+        <label>Anthropic APIキー（Claude翻訳）
+            <input type="password" name="anthropic_api_key"
+                   placeholder="sk-ant-...">
+        </label>
+        <div class="key-meta muted">
+            状態:
+                            <span class="hstat warn">未設定</span>
+                    </div>
+
+        <label>OpenAI APIキー（文字起こし・翻訳メモリ）
+            <input type="password" name="openai_api_key"
+                   placeholder="sk-...">
+        </label>
+        <div class="key-meta muted">
+            状態:
+                            <span class="hstat warn">未設定</span>
+                    </div>
+
+        <label>Deepgram APIキー（文字起こし: Nova-3）
+            <input type="password" name="deepgram_api_key"
+                   placeholder="Deepgramのキーを貼り付け">
+        </label>
+        <div class="key-meta muted">
+            状態: <span class="hstat warn">未設定（Deepgram文字起こしを使う場合のみ必要）</span>                    </div>
+
+        <label>Deepgram キーターム（専門用語の認識強化）
+            <textarea name="deepgram_keyterms" rows="3"
+                      placeholder="Kubernetes, ファインチューニング, fine-tuning&#10;（改行またはカンマ区切りで入力）"></textarea>
+        </label>
+        <div class="key-meta muted">
+            Deepgram(Nova-3)が聞き取りにくい専門用語や固有名詞を、正しく文字起こしさせるためのヒント語です。
+            例:「Kubernetes」が別の語に化ける場合、ここに「Kubernetes」を追加します。
+            <label class="inline-check">
+                <input type="checkbox" name="deepgram_keyterm_glossary" value="1" checked>
+                用語集の語も自動でキータームに使う
+            </label>
+            <span class="muted">（音声の言語に合わせて、原語または訳語を使います）</span>
+        </div>
+
+        <label>Google Gemini APIキー（Gemini翻訳）
+            <input type="password" name="gemini_api_key"
+                   placeholder="AIza...">
+        </label>
+        <div class="key-meta muted">
+            状態: <span class="hstat warn">未設定（Gemini翻訳を使う場合のみ必要）</span>                    </div>
+
+        <label>OpenAI互換 の接続先（Groq / DeepSeek / Ollama / LM Studio 等の翻訳）
+            <select name="openai_compat_preset">
+                <option value="" selected>カスタム（下の URL を使う）</option>
+                                    <option value="groq" >Groq（https://api.groq.com/openai/v1）</option>
+                                    <option value="openrouter" >OpenRouter（https://openrouter.ai/api/v1）</option>
+                                    <option value="deepseek" >DeepSeek（https://api.deepseek.com）</option>
+                                    <option value="xai" >xAI (Grok)（https://api.x.ai/v1）</option>
+                                    <option value="nvidia" >NVIDIA Build（https://integrate.api.nvidia.com/v1）</option>
+                                    <option value="ollama" >Ollama（ローカル）（http://127.0.0.1:11434/v1）</option>
+                                    <option value="lmstudio" >LM Studio（ローカル）（http://127.0.0.1:1234/v1）</option>
+                            </select>
+        </label>
+        <label>カスタムの接続先 URL（.../v1 まで。プリセットを選んだときは不要）
+            <input type="url" name="openai_compat_base_url" value="" placeholder="http://127.0.0.1:11434/v1">
+        </label>
+        <label>OpenAI互換 のモデル名
+            <input type="text" name="openai_compat_model" value="" list="compatModelList" placeholder="例: llama-3.3-70b-versatile / qwen2.5:7b">
+            <datalist id="compatModelList">
+                                                            <option value="llama-3.3-70b-versatile">Groq</option>
+                                            <option value="llama-3.1-8b-instant">Groq</option>
+                                            <option value="qwen-2.5-32b">Groq</option>
+                                                                                <option value="deepseek/deepseek-chat">OpenRouter</option>
+                                            <option value="meta-llama/llama-3.3-70b-instruct">OpenRouter</option>
+                                            <option value="google/gemini-2.0-flash-exp:free">OpenRouter</option>
+                                            <option value="qwen/qwen-2.5-72b-instruct">OpenRouter</option>
+                                                                                <option value="deepseek-chat">DeepSeek</option>
+                                            <option value="deepseek-reasoner">DeepSeek</option>
+                                                                                <option value="grok-4.1-fast">xAI (Grok)</option>
+                                            <option value="grok-4">xAI (Grok)</option>
+                                                                                <option value="meta/llama-3.1-70b-instruct">NVIDIA Build</option>
+                                            <option value="deepseek-ai/deepseek-r1">NVIDIA Build</option>
+                                            <option value="qwen/qwen2.5-72b-instruct">NVIDIA Build</option>
+                                                                                <option value="qwen2.5:7b">Ollama（ローカル）</option>
+                                            <option value="llama3.1:8b">Ollama（ローカル）</option>
+                                            <option value="gemma2:9b">Ollama（ローカル）</option>
+                                                                                <option value="qwen2.5-7b-instruct">LM Studio（ローカル）</option>
+                                                </datalist>
+        </label>
+        <label>OpenAI互換 APIキー
+            <input type="password" name="openai_compat_api_key"
+                   placeholder="APIキーを貼り付け（Ollama / LM Studio は任意の文字列）">
+        </label>
+        <div class="key-meta muted">
+            状態: <span class="hstat warn">未設定（OpenAI互換翻訳を使う場合のみ必要）</span>                    </div>
+    </section>
+
+    <section class="settings-section">
+        <h2>字幕の出力言語</h2>
+        <label>既定の出力言語（訳出先）
+            <select name="target_lang">
+                                    <option value="ja" selected>
+                        日本語                    </option>
+                                    <option value="zh-Hans" >
+                        中国語（簡体字）                    </option>
+                                    <option value="zh-Hant" >
+                        中国語（繁体字）                    </option>
+                                    <option value="ko" >
+                        韓国語                    </option>
+                                    <option value="en" >
+                        英語                    </option>
+                                    <option value="de" >
+                        ドイツ語                    </option>
+                                    <option value="fr" >
+                        フランス語                    </option>
+                                    <option value="es" >
+                        スペイン語                    </option>
+                                    <option value="pt" >
+                        ポルトガル語                    </option>
+                                    <option value="th" >
+                        タイ語                    </option>
+                                    <option value="vi" >
+                        ベトナム語                    </option>
+                                    <option value="id" >
+                        インドネシア語                    </option>
+                            </select>
+        </label>
+        <p class="muted setting-hint">新規アップロード時の初期値です。動画ごとにアップロード画面で変更できます。
+            用語集と翻訳メモリは出力言語ごとに分かれて管理され、翻訳時はその言語のものだけが使われます。</p>
+    </section>
+
+    <section class="settings-section">
+        <h2>字幕の表示時間</h2>
+        <label>2行以上の字幕の最低表示時間（秒）
+            <input type="number" name="subtitle_min_sec_multi" min="0" max="30" step="0.1"
+                   value="5">
+        </label>
+        <label>1行の字幕の最低表示時間（秒）
+            <input type="number" name="subtitle_min_sec_single" min="0" max="30" step="0.1"
+                   value="2.5">
+        </label>
+        <p class="muted setting-hint">発話が短くてすぐ消えてしまう字幕を、読み切れるようこの時間まで表示し続けます
+            （プレビュー・VTT・焼き込みすべてに適用。行数は焼き込み時の自動改行も含めて判定します）。
+            次の字幕が始まる直前までしか延ばさないので、字幕どうしが重なったり音声とずれたりはしません。
+            届かない字幕は編集画面に警告が出ます。0 にすると延長しません。</p>
+    </section>
+
+    <section class="settings-section">
+        <h2>翻訳の精度オプション</h2>
+        <label class="inline-check">
+            <input type="checkbox" name="translate_refine" value="1" >
+            2パス自己校正で精度を上げる（精度優先）
+        </label>
+        <p class="muted setting-hint">1回翻訳した後、もう一度AIに用語集と原文を見せて訳を見直させます。
+            誤訳や用語の取りこぼしが減りますが、翻訳のAPIコストは約2倍になります。</p>
+
+        <label class="inline-check">
+            <input type="checkbox" name="prompt_cache" value="1" checked>
+            プロンプトキャッシュでコスト削減（推奨・既定ON）
+        </label>
+        <p class="muted setting-hint">毎回同じ翻訳ルールの部分をキャッシュし、入力コストを大きく削減します。
+            精度には影響しません。基本はONのままで構いません。</p>
+    </section>
+
+    <div><button type="submit" class="btn primary">設定を保存</button></div>
+</form>
+</main>
+<footer class="site-footer muted">
+    <a href="https://github.com/haru-sudo/subtitlesmith2" rel="noopener">ソースコード</a>（GNU AGPL-3.0）
+</footer>
+</body>
+</html>

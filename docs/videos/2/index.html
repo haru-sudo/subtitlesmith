@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#f6f7f9">
+    <meta name="format-detection" content="telephone=no">
+    <title>Fine-tuning workshop（抜粋）</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/subtitlesmith2/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/subtitlesmith2/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/subtitlesmith2/assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="/subtitlesmith2/assets/css/demo.css">
+    <script src="/subtitlesmith2/assets/js/demo-data.js"></script>
+    <script src="/subtitlesmith2/assets/js/demo.js"></script>
+    <link rel="stylesheet" href="/subtitlesmith2/assets/css/app.css">
+    <script>window.APP_BASE = "\/subtitlesmith2"; window.APP_LATEST_NEWS = "";</script>
+    <script src="/subtitlesmith2/assets/js/common.js"></script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/subtitlesmith2/dashboard/">subtitlesmith</a>
+        <nav class="topnav">
+            <a href="/subtitlesmith2/dashboard/">ダッシュボード</a>
+            <a href="/subtitlesmith2/glossary/">用語集</a>
+            <a href="/subtitlesmith2/memory/">翻訳メモリ</a>
+            <a href="/subtitlesmith2/settings/">設定</a>
+            <a href="/subtitlesmith2/news/" class="nav-news">お知らせ<span class="nav-dot" id="newsDot" hidden aria-label="未読のお知らせがあります"></span></a>
+            <a href="/subtitlesmith2/health/">状態</a>
+                            <span class="muted user-email">デモユーザー</span>
+                        <form action="/subtitlesmith2/logout" method="post" class="inline">
+                <button type="submit" class="link-btn">ログアウト</button>
+            </form>
+        </nav>
+    </header>
+
+<main class="container editor">
+    <div class="editor-head">
+    <div class="editor-head-left">
+        <a href="/subtitlesmith2/dashboard/" class="back-link">&lsaquo; ダッシュボード</a>
+        <h1 class="editor-title">Fine-tuning workshop（抜粋）</h1>
+        <span class="badge status-ready" id="statusBadge">編集可能</span>
+                            </div>
+    <div class="editor-head-right">
+        <span class="save-indicator muted" id="saveIndicator"></span>
+                <button class="btn primary" id="exportBtn"
+                data-needs-export="1"
+                data-has-export="0"
+                title="現在の字幕を映像に焼き込み、完了したらダウンロードします（数分かかることがあります）">
+            字幕を焼き込んでDL        </button>
+        <a class="btn" id="vttDlBtn"
+           href="/subtitlesmith2/videos/2/subtitles-ja.vtt"
+           download
+           title="One-Streamなどにアップロードできる字幕ファイル（WebVTT）をダウンロードします"
+           >字幕(VTT)をDL</a>
+        <a class="btn" id="xlsxDlBtn"
+           href="/subtitlesmith2/videos/2/segments-ja.xlsx"
+           download
+           title="AIが生成した字幕（原文・機械翻訳・編集訳）をExcelで書き出します。翻訳の一括編集に使えます。"
+           >字幕(Excel)を書き出し</a>
+        <button class="btn" id="xlsxImportBtn"
+                title="Excel/CSVで編集した字幕を取り込みます。ID列で元の行に対応付けて更新し、ID空欄の行は追加します。"
+                >Excelから取込</button>
+        <label class="inline-check" id="xlsxReplaceWrap"
+               title="チェックすると、取り込むシートに載っていない既存の字幕を削除して、シートの内容で完全に置き換えます。"
+               >
+            <input type="checkbox" id="xlsxReplaceChk"> 取込時に完全置換
+        </label>
+        <input type="file" id="xlsxImportFile" accept=".xlsx,.csv" hidden>
+        <a class="btn" id="sourceDlBtn"
+           href="/subtitlesmith2/storage/videos/demo2.mp4"
+           download
+           title="字幕を焼き込んでいないオリジナルの元動画をダウンロードします"
+           >元動画をDL</a>
+        <button class="btn danger" id="deleteVideoBtn" title="この動画と字幕・書き出し物をすべて削除します">動画を削除</button>
+    </div>
+</div>
+
+
+<!-- メタ情報の編集（動画リスト管理） -->
+<details class="meta-edit" >
+    <summary>動画情報を編集</summary>
+    <form method="post" action="/subtitlesmith2/videos/2/meta" class="meta-form">
+        <label>タイトル
+            <input type="text" name="title" value="Fine-tuning workshop（抜粋）">
+        </label>
+        <div class="meta-row">
+            <label>工程
+                <select name="stage">
+                                            <option value="" selected>(なし)</option>
+                                            <option value="完成品" >完成品</option>
+                                            <option value="仕掛品" >仕掛品</option>
+                                            <option value="翻訳素材" >翻訳素材</option>
+                                    </select>
+            </label>
+            <label>形式 <input type="text" name="format_label" value=""></label>
+            <label>年月 <input type="text" name="period" value=""></label>
+            <label>分数 <input type="text" name="duration_label" value=""></label>
+        </div>
+        <label>状態メモ
+            <input type="text" name="status_note" value="">
+        </label>
+        <label>内容
+            <textarea name="description" rows="2">ファインチューニングの準備として、学習データの集め方と品質チェックの手順を紹介する。</textarea>
+        </label>
+                <div><button type="submit" class="btn">情報を保存</button></div>
+    </form>
+</details>
+
+<!-- カタログ(ファイル未添付): 動画をアップロードして字幕生成を開始 -->
+<div id="catalogPanel" class="catalog-panel" hidden>
+    <h2>動画ファイルを追加</h2>
+    <p class="muted">この動画はまだファイルが未添付です。ファイルをアップロードすると文字起こしと翻訳が始まります。</p>
+    <form method="post" action="/subtitlesmith2/videos/2/attach" enctype="multipart/form-data" class="stack">
+        <input type="file" name="video" accept="video/*" required>
+        <div class="model-field">
+    <span class="model-field-label">字幕の出力言語</span>
+    <div class="lang-choices">
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="ja"
+                       checked>
+                日本語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="zh-Hans"
+                       >
+                中国語（簡体字）            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="zh-Hant"
+                       >
+                中国語（繁体字）            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="ko"
+                       >
+                韓国語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="en"
+                       >
+                英語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="de"
+                       >
+                ドイツ語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="fr"
+                       >
+                フランス語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="es"
+                       >
+                スペイン語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="pt"
+                       >
+                ポルトガル語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="th"
+                       >
+                タイ語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="vi"
+                       >
+                ベトナム語            </label>
+                    <label class="inline-check lang-choice">
+                <input type="checkbox" name="target_langs[]" value="id"
+                       >
+                インドネシア語            </label>
+            </div>
+    <span class="muted field-hint">
+        複数選べます。選んだ言語ぶんの字幕を作り、編集画面のタブで切り替えられます。
+        用語集・翻訳メモリも言語ごとに使い分けます。
+        <strong>翻訳のAPIコストは言語の数だけかかります。</strong>あとから編集画面で追加・削除もできます。
+    </span>
+</div>
+        <div class="model-field">
+    <span class="model-field-label">翻訳プロバイダ</span>
+    <div class="model-options model-options-compact provider-group" data-uid="attach">
+                    <label class="model-option selected opt-disabled">
+                <input type="radio" name="translate_provider" value="anthropic"
+                       checked>
+                <span class="model-main">
+                    <span class="model-name">Claude（Anthropic）                                                <span class="badge tag" title="設定ページでキー等の登録が必要">未設定</span>                    </span>
+                    <span class="model-note muted">最高精度。専門用語・長文脈に最も強い。プロンプトキャッシュ対応。</span>
+                </span>
+            </label>
+                    <label class="model-option  opt-disabled">
+                <input type="radio" name="translate_provider" value="gemini"
+                       >
+                <span class="model-main">
+                    <span class="model-name">Google Gemini                        <span class="badge tag recommend">無料枠あり</span>                        <span class="badge tag" title="設定ページでキー等の登録が必要">未設定</span>                    </span>
+                    <span class="model-note muted">無料枠あり（Flashは1日1,500回・要確認）。品質も高く日本語に強い。</span>
+                </span>
+            </label>
+                    <label class="model-option  opt-disabled">
+                <input type="radio" name="translate_provider" value="openai"
+                       >
+                <span class="model-main">
+                    <span class="model-name">OpenAI互換（汎用）                        <span class="badge tag recommend">無料枠あり</span>                        <span class="badge tag" title="設定ページでキー等の登録が必要">未設定</span>                    </span>
+                    <span class="model-note muted">base_URLとキーを設定して Groq / OpenRouter / DeepSeek / Grok / NVIDIA Build 等に接続。</span>
+                </span>
+            </label>
+                    <label class="model-option  ">
+                <input type="radio" name="translate_provider" value="local-llm"
+                       >
+                <span class="model-main">
+                    <span class="model-name">ローカルLLM（コスト0）                        <span class="badge tag">コスト0</span>
+                                                                    </span>
+                    <span class="model-note muted">サーバー上で小型LLM(Qwen2.5等)を実行。APIコスト0・キー不要・常駐サーバー不要。用語集・翻訳メモリ・文脈・校正がすべて効く。GPU不要(CPU・int8)。要セットアップ(ctranslate2/transformers)。</span>
+                </span>
+            </label>
+            </div>
+</div>
+
+        <div class="model-field provider-models" data-uid="attach" data-provider="anthropic" >
+        <span class="model-field-label">Claude のモデル</span>
+        <div class="model-options model-options-compact">
+                            <label class="model-option selected">
+                    <input type="radio" name="model_anthropic" value="claude-opus-5-5"
+                           data-provider="anthropic"
+                           checked >
+                    <span class="model-main">
+                        <span class="model-name">Claude Opus 5.5（推奨）</span>
+                        <span class="model-note muted">最新の最上位モデル。難しい専門表現・長い文脈に最も強い。 / 精度:最高 速度:標準 / $5.00・$25.00(入/出 100万)</span>                    </span>
+                </label>
+                    </div>
+    </div>
+        <div class="model-field provider-models" data-uid="attach" data-provider="gemini" hidden>
+        <span class="model-field-label">Gemini のモデル</span>
+        <div class="model-options model-options-compact">
+                            <label class="model-option selected">
+                    <input type="radio" name="model_gemini" value="gemini-2.5-flash"
+                           data-provider="gemini"
+                           checked disabled>
+                    <span class="model-main">
+                        <span class="model-name">Gemini 2.5 Flash</span>
+                        <span class="model-note muted">無料枠あり・高速。日本語に強い。</span>                    </span>
+                </label>
+                            <label class="model-option ">
+                    <input type="radio" name="model_gemini" value="gemini-2.5-pro"
+                           data-provider="gemini"
+                            disabled>
+                    <span class="model-main">
+                        <span class="model-name">Gemini 2.5 Pro</span>
+                        <span class="model-note muted">高精度。難しい内容向け（無料枠は少なめ）。</span>                    </span>
+                </label>
+                            <label class="model-option ">
+                    <input type="radio" name="model_gemini" value="gemini-2.0-flash"
+                           data-provider="gemini"
+                            disabled>
+                    <span class="model-main">
+                        <span class="model-name">Gemini 2.0 Flash</span>
+                        <span class="model-note muted">旧世代の高速モデル。</span>                    </span>
+                </label>
+                    </div>
+    </div>
+        
+<!-- 実際に送信する値（選択プロバイダのモデルをJSがここへ反映） -->
+<input type="hidden" name="translate_model" id="attach_model_hidden" value="claude-opus-5-5">
+        <div class="model-field">
+    <span class="model-field-label">文字起こしエンジン</span>
+    <div class="model-options model-options-compact">
+                    <label class="model-option selected">
+                <input type="radio" name="transcribe_model" value="deepgram-nova-3"
+                       checked>
+                <span class="model-main">
+                    <span class="model-name">Deepgram Nova-3                        <span class="badge tag recommend">推奨</span>                                            </span>
+                    <span class="model-note muted">既定。英語に強く、Whisper系のような無音での幻聴が出にくい。時刻つきで返り字幕向き。要 Deepgram APIキー。</span>
+                    <span class="model-specs muted">
+                        精度: 最高 ・
+                        料金: $0.004/分                    </span>
+                </span>
+            </label>
+                    <label class="model-option ">
+                <input type="radio" name="transcribe_model" value="whisper-1"
+                       >
+                <span class="model-main">
+                    <span class="model-name">Whisper (whisper-1)                                                                    </span>
+                    <span class="model-note muted">OpenAIで唯一セグメント時刻を返すモデル。字幕のタイミングが音声と合う。</span>
+                    <span class="model-specs muted">
+                        精度: 高 ・
+                        料金: $0.006/分                    </span>
+                </span>
+            </label>
+                    <label class="model-option ">
+                <input type="radio" name="transcribe_model" value="gpt-4o-transcribe"
+                       >
+                <span class="model-main">
+                    <span class="model-name">GPT-4o Transcribe                                                                    </span>
+                    <span class="model-note muted">文字の精度は最高だがセグメント時刻を返さないため、字幕用途では whisper-1 で実行されます。</span>
+                    <span class="model-specs muted">
+                        精度: 最高 ・
+                        料金: $0.006/分                    </span>
+                </span>
+            </label>
+                    <label class="model-option ">
+                <input type="radio" name="transcribe_model" value="gpt-4o-mini-transcribe"
+                       >
+                <span class="model-main">
+                    <span class="model-name">GPT-4o mini Transcribe                                                                    </span>
+                    <span class="model-note muted">上記の半額。同じくセグメント時刻を返さないため、字幕用途では whisper-1 で実行されます。</span>
+                    <span class="model-specs muted">
+                        精度: 高 ・
+                        料金: $0.003/分                    </span>
+                </span>
+            </label>
+                    <label class="model-option ">
+                <input type="radio" name="transcribe_model" value="local-whisper"
+                       >
+                <span class="model-main">
+                    <span class="model-name">ローカルWhisper（コスト0）                                                <span class="badge tag">コスト0</span>                    </span>
+                    <span class="model-note muted">サーバー上で large-v3（最高精度）を実行しAPIコストはゼロ。GPU不要(多コアCPU向けに最適化済み)。要セットアップ(faster-whisper)。</span>
+                    <span class="model-specs muted">
+                        精度: 高 ・
+                        料金: 無料（サーバー実行）                    </span>
+                </span>
+            </label>
+            </div>
+</div>
+        <div><button type="submit" class="btn primary">アップロードして開始</button></div>
+    </form>
+</div>
+
+<!-- 処理中/エラー パネル -->
+<div id="processingPanel" class="processing-panel" hidden>
+    <div class="spinner"></div>
+    <p id="processingText">処理中です…</p>
+    <p class="muted" id="processingSub"></p>
+
+    <!-- 進行バー（段階＋パーセント） -->
+    <div id="progressWrap" class="progress-wrap" hidden>
+        <div class="progress-track"><div id="progressBar" class="progress-bar" style="width:0%"></div></div>
+        <p class="muted progress-label" id="progressLabel"></p>
+    </div>
+
+    <!-- ローカル文字起こし/翻訳時のサーバー負荷 -->
+    <div id="loadWrap" class="load-wrap" hidden>
+        <p class="load-title muted" id="loadTitle">サーバー負荷（ローカル処理中）</p>
+        <div class="load-row">
+            <span class="load-name">CPU</span>
+            <div class="progress-track sm"><div id="cpuBar" class="progress-bar cpu" style="width:0%"></div></div>
+            <span class="load-val" id="cpuVal">—</span>
+        </div>
+        <div class="load-row">
+            <span class="load-name">メモリ</span>
+            <div class="progress-track sm"><div id="memBar" class="progress-bar mem" style="width:0%"></div></div>
+            <span class="load-val" id="memVal">—</span>
+        </div>
+        <p class="muted load-extra" id="loadExtra"></p>
+        <p class="muted proc-status idle" id="procStatus"></p>
+    </div>
+
+    <p class="muted">アップロード後、自動で文字起こしと翻訳が進みます。完了すると編集できるようになります。</p>
+</div>
+
+<!-- 編集本体 -->
+<div id="editorMain" class="editor-main" hidden>
+    <div class="video-panel">
+        <video id="player" controls preload="metadata" playsinline>
+            <source src="/subtitlesmith2/storage/videos/demo2.mp4">
+            <track id="subTrack" kind="subtitles" srclang="ja" label="日本語" default
+                   src="/subtitlesmith2/videos/2/subtitles-ja.vtt">
+        </video>
+        <div class="player-hint muted">行をクリックするとその位置へ移動します。</div>
+
+        <!-- 動画編集（区間カット） -->
+        <details class="cut-panel" id="cutPanel">
+            <summary>動画をカット（区間削除）</summary>
+            <p class="muted cut-help">
+                指定した区間の<strong>映像・音声・字幕をまとめて削除</strong>します。削除後は、その先のセグメントの時刻が削除した分だけ繰り上がります。
+                再生位置から「開始」「終了」をセットできます。<strong>元に戻せません。</strong>
+            </p>
+            <div class="cut-row">
+                <label class="cut-field">
+                    <span>開始</span>
+                    <input type="text" id="cutStart" class="time-input" placeholder="00:00.000" value="00:00.000">
+                </label>
+                <button type="button" class="btn sm" id="cutSetStart" title="今の再生位置を開始にセット">現在位置を開始に</button>
+                <span class="time-arrow">→</span>
+                <label class="cut-field">
+                    <span>終了</span>
+                    <input type="text" id="cutEnd" class="time-input" placeholder="00:00.000" value="00:00.000">
+                </label>
+                <button type="button" class="btn sm" id="cutSetEnd" title="今の再生位置を終了にセット">現在位置を終了に</button>
+            </div>
+            <div class="cut-actions">
+                <button type="button" class="btn sm" id="cutPreview" title="カットする区間だけを再生して確認します">区間を試聴</button>
+                <button type="button" class="btn danger" id="cutRun" title="この区間を映像・字幕から削除します（数分かかることがあります）">この区間を削除</button>
+                <span class="muted" id="cutInfo"></span>
+            </div>
+        </details>
+    </div>
+
+    <div class="segments-panel">
+        <!-- 字幕言語の切り替え（同じ動画で複数言語の字幕を持てる） -->
+        <div class="lang-tabs" id="langTabs" data-current="ja">
+                            <button type="button"
+                        class="lang-tab active"
+                        data-lang="ja"
+                        data-status="ready"
+                        title="主言語（最初に作った言語）">
+                    日本語                                    </button>
+                                        <div class="lang-add">
+                    <select id="addLangSelect" title="この動画に追加する言語">
+                        <option value="">＋ 言語を追加</option>
+                                                    <option value="zh-Hans">中国語（簡体字）</option>
+                                                    <option value="zh-Hant">中国語（繁体字）</option>
+                                                    <option value="ko">韓国語</option>
+                                                    <option value="en">英語</option>
+                                                    <option value="de">ドイツ語</option>
+                                                    <option value="fr">フランス語</option>
+                                                    <option value="es">スペイン語</option>
+                                                    <option value="pt">ポルトガル語</option>
+                                                    <option value="th">タイ語</option>
+                                                    <option value="vi">ベトナム語</option>
+                                                    <option value="id">インドネシア語</option>
+                                            </select>
+                    <button type="button" class="btn sm" id="addLangBtn"
+                            title="選んだ言語へ、この動画の字幕を翻訳します（文字起こしは再利用します。翻訳のAPIコストが言語ぶんかかります）">追加</button>
+                </div>
+                                    <button type="button" class="btn sm danger lang-del" id="removeLangBtn"
+                    title="表示中の言語の字幕を削除します" hidden>この言語を削除</button>
+        </div>
+        
+        <div class="segments-toolbar">
+            <span class="muted" id="segCount"></span>
+            <span class="muted line-limit-hint"
+                  title="この動画に焼き込むと、1行がこの長さを超えたところで自動的に改行されます（全角=1文字・半角=0.5文字換算）">
+                1行の上限: 全角20文字（半角なら40文字）
+            </span>
+            <span class="muted kbd-hint" id="kbdHint" title="キーボードショートカット"></span>
+                            <button class="btn" id="glossaryAiBtn"
+                        title="編集済みの字幕（原文と訳）からAIで専門用語を抽出し、用語集に登録します（APIコストがかかります）">
+                    用語集にAIで登録
+                </button>
+                    </div>
+        <div id="segmentList" class="segment-list"></div>
+    </div>
+</div>
+
+<script type="application/json" id="initialData">{"video":{"id":2,"title":"Fine-tuning workshop（抜粋）","status":"ready","duration_ms":18000,"has_export":false,"error":null},"segments":[{"id":9,"start_ms":0,"end_ms":3200,"source_text":"Today we'll prepare data for fine-tuning.","machine_translation":"今日はファインチューニング用のデータを準備します","edited_translation":"今日はファインチューニング用のデータを準備します","is_approved":false,"approved_by":null},{"id":10,"start_ms":3400,"end_ms":7000,"source_text":"Collect real examples from your users rather than writing them yourself.","machine_translation":"自分で書くより、ユーザーの実例を集めましょう","edited_translation":"自分で書くより、ユーザーの実例を集めましょう","is_approved":false,"approved_by":null},{"id":11,"start_ms":7200,"end_ms":11000,"source_text":"Then remove duplicates and check the labels by hand.","machine_translation":"そのあと重複を取り除き、ラベルを手で確認します","edited_translation":"そのあと重複を取り除き、ラベルを手で確認します","is_approved":false,"approved_by":null},{"id":12,"start_ms":11200,"end_ms":15000,"source_text":"A small, clean dataset often beats a large, noisy one.","machine_translation":"小さくてもきれいなデータは\n大きくて雑なデータに勝ることが多いです","edited_translation":"小さくてもきれいなデータは\n大きくて雑なデータに勝ることが多いです","is_approved":false,"approved_by":null},{"id":13,"start_ms":15200,"end_ms":17800,"source_text":"Let's look at an example.","machine_translation":"例を見てみましょう","edited_translation":"例を見てみましょう","is_approved":false,"approved_by":null}]}</script>
+<script>window.__demoPatchInitial && window.__demoPatchInitial();</script>
+<script>
+window.APP_VIDEO_ID = 2;
+window.APP_LOCAL_TRANSCRIBE = false;
+window.APP_LOCAL_TRANSLATE = false;
+/* 字幕の出力言語と、焼き込み時に自動改行される1行の上限文字数（全角換算） */
+window.APP_TARGET_LANG = "ja";
+window.APP_TARGET_LANG_LABEL = "日本語";
+window.APP_TARGET_LANG_TAG = "ja";
+window.APP_MAX_LINE_CHARS = 20;
+/* 字幕の最低表示時間（秒）[2行以上, 1行]・次の字幕とのすき間(ms)。Subtitles::timedCues と同じ規則で警告する */
+window.APP_MIN_DISPLAY_SEC = [5,2.5];
+window.APP_MIN_GAP_MS = 80;
+window.APP_VIDEO_LANGS = [{"lang":"ja","label":"日本語","tag":"ja","status":"ready","has_export":false,"export_stale":true,"primary":true}];
+</script>
+<script src="/subtitlesmith2/assets/js/editor.js"></script>
+<script>
+/* 添付パネルのプロバイダ/モデル選択（共通処理を利用） */
+window.APP_COMMON.setupProviderSelect('attach');
+window.APP_COMMON.setupRadioHighlights(document.getElementById('catalogPanel'));
+</script>
+</main>
+<footer class="site-footer muted">
+    <a href="https://github.com/haru-sudo/subtitlesmith2" rel="noopener">ソースコード</a>（GNU AGPL-3.0）
+</footer>
+</body>
+</html>

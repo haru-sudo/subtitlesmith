@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#f6f7f9">
+    <meta name="format-detection" content="telephone=no">
+    <title>翻訳メモリ</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/subtitlesmith2/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/subtitlesmith2/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/subtitlesmith2/assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="/subtitlesmith2/assets/css/demo.css">
+    <script src="/subtitlesmith2/assets/js/demo-data.js"></script>
+    <script src="/subtitlesmith2/assets/js/demo.js"></script>
+    <link rel="stylesheet" href="/subtitlesmith2/assets/css/app.css">
+    <script>window.APP_BASE = "\/subtitlesmith2"; window.APP_LATEST_NEWS = "";</script>
+    <script src="/subtitlesmith2/assets/js/common.js"></script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/subtitlesmith2/dashboard/">subtitlesmith</a>
+        <nav class="topnav">
+            <a href="/subtitlesmith2/dashboard/">ダッシュボード</a>
+            <a href="/subtitlesmith2/glossary/">用語集</a>
+            <a href="/subtitlesmith2/memory/">翻訳メモリ</a>
+            <a href="/subtitlesmith2/settings/">設定</a>
+            <a href="/subtitlesmith2/news/" class="nav-news">お知らせ<span class="nav-dot" id="newsDot" hidden aria-label="未読のお知らせがあります"></span></a>
+            <a href="/subtitlesmith2/health/">状態</a>
+                            <span class="muted user-email">デモユーザー</span>
+                        <form action="/subtitlesmith2/logout" method="post" class="inline">
+                <button type="submit" class="link-btn">ログアウト</button>
+            </form>
+        </nav>
+    </header>
+
+<main class="container">
+    <div class="page-head">
+    <h1>翻訳メモリ</h1>
+    <span class="muted">3 件</span>
+</div>
+<p class="muted">
+    字幕を「確認済」にした時、または動画を書き出した時に、原文と確定訳が自動で蓄積されます。
+    類似した原文が来たとき、過去の訳を参考にして翻訳の一貫性・精度が上がります。
+</p>
+
+<div class="tm-list">
+                        <div class="tm-item">
+                <div class="tm-texts">
+                    <div class="tm-source">Click New Project and give your project a short name.</div>
+                    <div class="tm-target">「新規プロジェクト」を押して短い名前を付けます</div>
+                </div>
+                <div class="tm-meta muted">
+                    <span class="badge tag" title="原語 → 訳語の言語">
+                        en → 日本語                    </span>
+                    <span>人手</span>
+                    <span>2026-11-07 13:40</span>
+                    <form method="post" action="/subtitlesmith2/memory/3/delete"
+                          onsubmit="return confirm('削除しますか？');">
+                        <button class="btn danger small" type="submit">削除</button>
+                    </form>
+                </div>
+            </div>
+                    <div class="tm-item">
+                <div class="tm-texts">
+                    <div class="tm-source">First, open the settings page from the top menu.</div>
+                    <div class="tm-target">まず上部のメニューから設定画面を開きます</div>
+                </div>
+                <div class="tm-meta muted">
+                    <span class="badge tag" title="原語 → 訳語の言語">
+                        en → 日本語                    </span>
+                    <span>人手</span>
+                    <span>2026-11-07 13:40</span>
+                    <form method="post" action="/subtitlesmith2/memory/2/delete"
+                          onsubmit="return confirm('削除しますか？');">
+                        <button class="btn danger small" type="submit">削除</button>
+                    </form>
+                </div>
+            </div>
+                    <div class="tm-item">
+                <div class="tm-texts">
+                    <div class="tm-source">Welcome to the first part of our cloud setup guide.</div>
+                    <div class="tm-target">クラウド設定ガイドの第1回へようこそ</div>
+                </div>
+                <div class="tm-meta muted">
+                    <span class="badge tag" title="原語 → 訳語の言語">
+                        en → 日本語                    </span>
+                    <span>人手</span>
+                    <span>2026-11-07 13:40</span>
+                    <form method="post" action="/subtitlesmith2/memory/1/delete"
+                          onsubmit="return confirm('削除しますか？');">
+                        <button class="btn danger small" type="submit">削除</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+
+</main>
+<footer class="site-footer muted">
+    <a href="https://github.com/haru-sudo/subtitlesmith2" rel="noopener">ソースコード</a>（GNU AGPL-3.0）
+</footer>
+</body>
+</html>

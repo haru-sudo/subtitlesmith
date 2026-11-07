@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#f6f7f9">
+    <meta name="format-detection" content="telephone=no">
+    <title>お知らせ</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/subtitlesmith2/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/subtitlesmith2/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/subtitlesmith2/assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="/subtitlesmith2/assets/css/demo.css">
+    <script src="/subtitlesmith2/assets/js/demo-data.js"></script>
+    <script src="/subtitlesmith2/assets/js/demo.js"></script>
+    <link rel="stylesheet" href="/subtitlesmith2/assets/css/app.css">
+    <script>window.APP_BASE = "\/subtitlesmith2"; window.APP_LATEST_NEWS = "";</script>
+    <script src="/subtitlesmith2/assets/js/common.js"></script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/subtitlesmith2/dashboard/">subtitlesmith</a>
+        <nav class="topnav">
+            <a href="/subtitlesmith2/dashboard/">ダッシュボード</a>
+            <a href="/subtitlesmith2/glossary/">用語集</a>
+            <a href="/subtitlesmith2/memory/">翻訳メモリ</a>
+            <a href="/subtitlesmith2/settings/">設定</a>
+            <a href="/subtitlesmith2/news/" class="nav-news">お知らせ<span class="nav-dot" id="newsDot" hidden aria-label="未読のお知らせがあります"></span></a>
+            <a href="/subtitlesmith2/health/">状態</a>
+                            <span class="muted user-email">デモユーザー</span>
+                        <form action="/subtitlesmith2/logout" method="post" class="inline">
+                <button type="submit" class="link-btn">ログアウト</button>
+            </form>
+        </nav>
+    </header>
+
+<main class="container">
+    <div class="news">
+    <div class="news-head">
+        <h1>お知らせ</h1>
+        <p class="muted">アプリの更新情報や運用に関するお知らせを掲載します。</p>
+    </div>
+
+            <p class="muted">お知らせはまだありません。</p>
+    </div>
+
+<script>
+  /* このページを開いたら「既読」にして未読バッジを消す */
+  window.APP_NEWS_PAGE = true;
+</script>
+</main>
+<footer class="site-footer muted">
+    <a href="https://github.com/haru-sudo/subtitlesmith2" rel="noopener">ソースコード</a>（GNU AGPL-3.0）
+</footer>
+</body>
+</html>

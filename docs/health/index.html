@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#f6f7f9">
+    <meta name="format-detection" content="telephone=no">
+    <title>環境チェック</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/subtitlesmith2/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/subtitlesmith2/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/subtitlesmith2/assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="/subtitlesmith2/assets/css/demo.css">
+    <script src="/subtitlesmith2/assets/js/demo-data.js"></script>
+    <script src="/subtitlesmith2/assets/js/demo.js"></script>
+    <link rel="stylesheet" href="/subtitlesmith2/assets/css/app.css">
+    <script>window.APP_BASE = "\/subtitlesmith2"; window.APP_LATEST_NEWS = "";</script>
+    <script src="/subtitlesmith2/assets/js/common.js"></script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/subtitlesmith2/dashboard/">subtitlesmith</a>
+        <nav class="topnav">
+            <a href="/subtitlesmith2/dashboard/">ダッシュボード</a>
+            <a href="/subtitlesmith2/glossary/">用語集</a>
+            <a href="/subtitlesmith2/memory/">翻訳メモリ</a>
+            <a href="/subtitlesmith2/settings/">設定</a>
+            <a href="/subtitlesmith2/news/" class="nav-news">お知らせ<span class="nav-dot" id="newsDot" hidden aria-label="未読のお知らせがあります"></span></a>
+            <a href="/subtitlesmith2/health/">状態</a>
+                            <span class="muted user-email">デモユーザー</span>
+                        <form action="/subtitlesmith2/logout" method="post" class="inline">
+                <button type="submit" class="link-btn">ログアウト</button>
+            </form>
+        </nav>
+    </header>
+
+<main class="container">
+    <div class="page-head">
+    <h1>環境チェック</h1>
+    <a class="btn small" href="/subtitlesmith2/health/" title="ffmpeg等のキャッシュ済みチェックを再実行します">再チェック</a>
+</div>
+<p class="muted">デプロイ後の動作確認用。<span class="hstat ok">OK</span> は正常、
+    <span class="hstat warn">注意</span> は設定推奨、<span class="hstat ng">NG</span> は要対応です。</p>
+
+<div class="table-scroll">
+<table class="health-table">
+    <thead><tr><th>項目</th><th>状態</th><th>詳細</th></tr></thead>
+    <tbody>
+                    <tr>
+                <td>PHP バージョン</td>
+                <td><span class="hstat ok">OK</span></td>
+                <td class="muted">8.3.6（8.1以上が必要）</td>
+            </tr>
+                    <tr>
+                <td>PHP拡張（pdo_sqlite, curl, mbstring, json, fileinfo）</td>
+                <td><span class="hstat ok">OK</span></td>
+                <td class="muted">すべて有効</td>
+            </tr>
+                    <tr>
+                <td>ffmpeg</td>
+                <td><span class="hstat ok">OK</span></td>
+                <td class="muted">ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers</td>
+            </tr>
+                    <tr>
+                <td>ffprobe</td>
+                <td><span class="hstat ok">OK</span></td>
+                <td class="muted">ffprobe version 6.1.1-3ubuntu5 Copyright (c) 2007-2023 the FFmpeg developers</td>
+            </tr>
+                    <tr>
+                <td>storage 書き込み</td>
+                <td><span class="hstat ok">OK</span></td>
+                <td class="muted">/var/www/subtitlesmith/storage</td>
+            </tr>
+                    <tr>
+                <td>データベース(SQLite)</td>
+                <td><span class="hstat ok">OK</span></td>
+                <td class="muted">/var/www/subtitlesmith/storage/app.sqlite</td>
+            </tr>
+                    <tr>
+                <td>ログイン方式</td>
+                <td><span class="hstat ok">OK</span></td>
+                <td class="muted">google（redirect: https://example.com/subtitlesmith2/auth/oidc/google/callback） / パスワード（1 人）</td>
+            </tr>
+                    <tr>
+                <td>ログイン許可リスト</td>
+                <td><span class="hstat warn">注意</span></td>
+                <td class="muted">メール 0 件 / ドメイン 0 件</td>
+            </tr>
+                    <tr>
+                <td>OpenAI APIキー(文字起こし/埋め込み)</td>
+                <td><span class="hstat warn">注意</span></td>
+                <td class="muted">未設定（設定ページで登録してください）</td>
+            </tr>
+                    <tr>
+                <td>Anthropic APIキー(翻訳)</td>
+                <td><span class="hstat warn">注意</span></td>
+                <td class="muted">未設定（設定ページで登録してください）</td>
+            </tr>
+                    <tr>
+                <td>Python(OCR用・任意)</td>
+                <td><span class="hstat ok">OK</span></td>
+                <td class="muted">Python 3.13.18</td>
+            </tr>
+            </tbody>
+</table>
+</div>
+</main>
+<footer class="site-footer muted">
+    <a href="https://github.com/haru-sudo/subtitlesmith2" rel="noopener">ソースコード</a>（GNU AGPL-3.0）
+</footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+# =====================================================================
+# 【サブディレクトリ / 1フォルダ配置 用】.htaccess
+#
+# 想定する配置（すべて public_html/subtitlesmith/ 直下に“フラット”に置く）:
+#   public_html/subtitlesmith/
+#     ├─ index.php          ← リポジトリ public/ の中身
+#     ├─ .htaccess          ← このファイル
+#     ├─ assets/            ← リポジトリ public/assets
+#     ├─ src/  config/  templates/  python/  worker.php  schema.sql  storage/
+#
+#   さらに config/config.php に  'base_path' => '/subtitlesmith'  を設定すること。
+#   Google の redirect_uri も  https://<ドメイン>/subtitlesmith/auth/google/callback  にする。
+#
+#   → https://<ドメイン>/subtitlesmith/ でアクセス可能。src/ config/ storage/ は外部から遮断される。
+# =====================================================================
+
+# ディレクトリの中身一覧を表示しない（storage/videos などのファイル名が見えないように）
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 機微ディレクトリ・ファイルへの直アクセスを遮断（403）
+    # ただし storage/videos（元動画）は直接配信を許可する。
+    # 大容量動画の再生は PHP 経由だと重い/Safariで再生不可になるため、Webサーバーから直接返す。
+    # ※ storage/ にはアプリが自動で「すべて遮断」の .htaccess を置き、videos/ にだけ許可の .htaccess を置く。
+
+    # storage 配下のうち videos/ 以外を遮断（元動画は通す）
+    RewriteCond %{REQUEST_URI} !^/?([^/]*/)*storage/videos/
+    RewriteRule (^|/)storage/ - [F,L]
+
+    # その他の機微ディレクトリ・ファイルを遮断
+    RewriteRule ^(config|src|templates|python|samples|deploy|logs|tools|docs|\.git|\.github)(/|$) - [F,L]
+    RewriteRule ^(worker\.php|runner\.php|schema\.sql|composer\.json|DEPLOY\.md|README\.md|\.user\.ini)$ - [F,L]
+
+    # 元動画（storage/videos）は実ファイルとして直接配信
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule (^|/)storage/videos/ - [L]
+
+    # 実在するファイル（assets の css/js/画像など）はそのまま配信
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+
+    # それ以外（ルート / や各ページ・API）はフロントコントローラへ
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+# 機密ファイルの直アクセス遮断（二重防御）
+<FilesMatch "\.(sqlite|sqlite-wal|sqlite-shm|db|db-wal|db-shm|db-journal|env|log|bak|ini)$">
+    Require all denied
+</FilesMatch>

@@ -1,0 +1,35 @@
+# =====================================================================
+# このファイルは storage/videos/ ディレクトリ内に置く専用の .htaccess です。
+#
+# 親ディレクトリ（設置ディレクトリ直下）の .htaccess が storage/ を遮断していても、
+# この子 .htaccess が優先され、動画ファイルへの直接アクセスを許可します。
+#
+# 配置場所:  <storage_dir>/videos/.htaccess
+#
+# ※ アプリが初回アクセス時に自動でコピーします（手で置く必要はありません）。
+# =====================================================================
+
+# ディレクトリの中身一覧は表示しない（ファイル名を知らない人に動画を列挙させない）
+Options -Indexes
+
+# このディレクトリ配下はすべてアクセス許可（動画ファイルの直接配信）
+<IfModule mod_authz_core.c>
+    Require all granted
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Allow from all
+</IfModule>
+
+# このディレクトリ内ではフロントコントローラへの転送・遮断を一切しない
+<IfModule mod_rewrite.c>
+    RewriteEngine Off
+</IfModule>
+
+# 動画の Content-Type を明示（ブラウザが正しく再生できるように）
+<IfModule mod_mime.c>
+    AddType video/mp4 .mp4 .m4v
+    AddType video/quicktime .mov
+    AddType video/x-matroska .mkv
+    AddType video/webm .webm
+</IfModule>

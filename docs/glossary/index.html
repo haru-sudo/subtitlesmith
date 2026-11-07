@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#f6f7f9">
+    <meta name="format-detection" content="telephone=no">
+    <title>用語集</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/subtitlesmith2/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/subtitlesmith2/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/subtitlesmith2/assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="/subtitlesmith2/assets/css/demo.css">
+    <script src="/subtitlesmith2/assets/js/demo-data.js"></script>
+    <script src="/subtitlesmith2/assets/js/demo.js"></script>
+    <link rel="stylesheet" href="/subtitlesmith2/assets/css/app.css">
+    <script>window.APP_BASE = "\/subtitlesmith2"; window.APP_LATEST_NEWS = "";</script>
+    <script src="/subtitlesmith2/assets/js/common.js"></script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/subtitlesmith2/dashboard/">subtitlesmith</a>
+        <nav class="topnav">
+            <a href="/subtitlesmith2/dashboard/">ダッシュボード</a>
+            <a href="/subtitlesmith2/glossary/">用語集</a>
+            <a href="/subtitlesmith2/memory/">翻訳メモリ</a>
+            <a href="/subtitlesmith2/settings/">設定</a>
+            <a href="/subtitlesmith2/news/" class="nav-news">お知らせ<span class="nav-dot" id="newsDot" hidden aria-label="未読のお知らせがあります"></span></a>
+            <a href="/subtitlesmith2/health/">状態</a>
+                            <span class="muted user-email">デモユーザー</span>
+                        <form action="/subtitlesmith2/logout" method="post" class="inline">
+                <button type="submit" class="link-btn">ログアウト</button>
+            </form>
+        </nav>
+    </header>
+
+<main class="container">
+    <div class="page-head">
+    <h1>用語集</h1>
+    <span class="muted">7 語</span>
+</div>
+<p class="muted">ここに登録した訳語は、翻訳時に「必ずこの訳を使う」制約としてプロンプトに注入されます。
+    訳語は出力言語ごとに分かれていて、翻訳ではその動画の出力言語と一致するものだけが使われます。</p>
+
+<section class="cand-section">
+    <h2 class="cand-title">用語候補 <span class="badge tag">2</span></h2>
+    <p class="muted">完成動画の取り込み時に原文から自動抽出された候補です。訳語は自動では決めていません。
+        正しい訳語を入力して「承認」すると用語集に登録されます（自動では翻訳に使われません）。</p>
+    <div class="cand-list">
+                    <div class="cand-item">
+                <div class="cand-head">
+                    <span class="badge tag">英語</span>
+                    <span class="cand-term">latency</span>
+                    <span class="muted cand-freq">4回出現</span>
+                </div>
+                                    <div class="cand-example muted">
+                        <div>原: The region you choose here affects latency.</div>                        <div>訳: ここで選ぶリージョンは遅延に影響します</div>                    </div>
+                                <div class="cand-actions">
+                    <form class="cand-approve" method="post"
+                          action="/subtitlesmith2/glossary/candidates/1/approve">
+                        <input type="hidden" name="source_lang" value="en">
+                        <input type="text" name="source_term" value="latency" required>
+                        <span class="time-arrow">→</span>
+                        <select name="target_lang" title="訳語の言語">
+                                                            <option value="ja" selected>日本語</option>
+                                                            <option value="zh-Hans" >中国語（簡体字）</option>
+                                                            <option value="zh-Hant" >中国語（繁体字）</option>
+                                                            <option value="ko" >韓国語</option>
+                                                            <option value="en" >英語</option>
+                                                            <option value="de" >ドイツ語</option>
+                                                            <option value="fr" >フランス語</option>
+                                                            <option value="es" >スペイン語</option>
+                                                            <option value="pt" >ポルトガル語</option>
+                                                            <option value="th" >タイ語</option>
+                                                            <option value="vi" >ベトナム語</option>
+                                                            <option value="id" >インドネシア語</option>
+                                                    </select>
+                        <input type="text" name="target_term" placeholder="正しい訳語を入力" required>
+                        <button class="btn primary" type="submit">承認</button>
+                    </form>
+                    <form method="post" action="/subtitlesmith2/glossary/candidates/1/reject"
+                          onsubmit="return confirm('この候補を却下しますか？（今後再提案されません）');">
+                        <button class="btn" type="submit">却下</button>
+                    </form>
+                </div>
+            </div>
+                    <div class="cand-item">
+                <div class="cand-head">
+                    <span class="badge tag">英語</span>
+                    <span class="cand-term">labels</span>
+                    <span class="muted cand-freq">3回出現</span>
+                </div>
+                                    <div class="cand-example muted">
+                        <div>原: check the labels by hand</div>                        <div>訳: ラベルを手で確認します</div>                    </div>
+                                <div class="cand-actions">
+                    <form class="cand-approve" method="post"
+                          action="/subtitlesmith2/glossary/candidates/2/approve">
+                        <input type="hidden" name="source_lang" value="en">
+                        <input type="text" name="source_term" value="labels" required>
+                        <span class="time-arrow">→</span>
+                        <select name="target_lang" title="訳語の言語">
+                                                            <option value="ja" selected>日本語</option>
+                                                            <option value="zh-Hans" >中国語（簡体字）</option>
+                                                            <option value="zh-Hant" >中国語（繁体字）</option>
+                                                            <option value="ko" >韓国語</option>
+                                                            <option value="en" >英語</option>
+                                                            <option value="de" >ドイツ語</option>
+                                                            <option value="fr" >フランス語</option>
+                                                            <option value="es" >スペイン語</option>
+                                                            <option value="pt" >ポルトガル語</option>
+                                                            <option value="th" >タイ語</option>
+                                                            <option value="vi" >ベトナム語</option>
+                                                            <option value="id" >インドネシア語</option>
+                                                    </select>
+                        <input type="text" name="target_term" placeholder="正しい訳語を入力" required>
+                        <button class="btn primary" type="submit">承認</button>
+                    </form>
+                    <form method="post" action="/subtitlesmith2/glossary/candidates/2/reject"
+                          onsubmit="return confirm('この候補を却下しますか？（今後再提案されません）');">
+                        <button class="btn" type="submit">却下</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+</section>
+
+<form class="gloss-add" method="post" action="/subtitlesmith2/glossary">
+    <select name="source_lang">
+                    <option value="ja" >日本語</option>
+                    <option value="zh-Hans" >中国語（簡体字）</option>
+                    <option value="zh-Hant" >中国語（繁体字）</option>
+                    <option value="ko" >韓国語</option>
+                    <option value="en" selected>英語</option>
+                    <option value="de" >ドイツ語</option>
+                    <option value="fr" >フランス語</option>
+                    <option value="es" >スペイン語</option>
+                    <option value="pt" >ポルトガル語</option>
+                    <option value="th" >タイ語</option>
+                    <option value="vi" >ベトナム語</option>
+                    <option value="id" >インドネシア語</option>
+                    <option value="it" >イタリア語</option>
+                    <option value="nl" >オランダ語</option>
+                    <option value="ru" >ロシア語</option>
+                    <option value="pl" >ポーランド語</option>
+                    <option value="sv" >スウェーデン語</option>
+                    <option value="tr" >トルコ語</option>
+                    <option value="ar" >アラビア語</option>
+                    <option value="hi" >ヒンディー語</option>
+                    <option value="uk" >ウクライナ語</option>
+                    <option value="cs" >チェコ語</option>
+                    <option value="da" >デンマーク語</option>
+                    <option value="fi" >フィンランド語</option>
+                    <option value="no" >ノルウェー語</option>
+                    <option value="el" >ギリシャ語</option>
+                    <option value="he" >ヘブライ語</option>
+                    <option value="hu" >ハンガリー語</option>
+                    <option value="ms" >マレー語</option>
+                    <option value="tl" >タガログ語</option>
+                    <option value="auto" >共通</option>
+            </select>
+    <input type="text" name="source_term" placeholder="原語 (例: fine-tuning)" required>
+    <span class="time-arrow">→</span>
+    <select name="target_lang" title="訳語の言語">
+                    <option value="ja" selected>日本語</option>
+                    <option value="zh-Hans" >中国語（簡体字）</option>
+                    <option value="zh-Hant" >中国語（繁体字）</option>
+                    <option value="ko" >韓国語</option>
+                    <option value="en" >英語</option>
+                    <option value="de" >ドイツ語</option>
+                    <option value="fr" >フランス語</option>
+                    <option value="es" >スペイン語</option>
+                    <option value="pt" >ポルトガル語</option>
+                    <option value="th" >タイ語</option>
+                    <option value="vi" >ベトナム語</option>
+                    <option value="id" >インドネシア語</option>
+            </select>
+    <input type="text" name="target_term" placeholder="訳語 (例: ファインチューニング)" required>
+    <input type="text" name="note" placeholder="メモ(任意)">
+    <button class="btn primary" type="submit">追加</button>
+</form>
+
+<div class="gloss-list">
+                        <div class="gloss-item">
+                <form class="gloss-row" method="post" action="/subtitlesmith2/glossary/5">
+                    <select name="source_lang">
+                                                    <option value="ja" >日本語</option>
+                                                    <option value="zh-Hans" >中国語（簡体字）</option>
+                                                    <option value="zh-Hant" >中国語（繁体字）</option>
+                                                    <option value="ko" >韓国語</option>
+                                                    <option value="en" selected>英語</option>
+                                                    <option value="de" >ドイツ語</option>
+                                                    <option value="fr" >フランス語</option>
+                                                    <option value="es" >スペイン語</option>
+                                                    <option value="pt" >ポルトガル語</option>
+                                                    <option value="th" >タイ語</option>
+                                                    <option value="vi" >ベトナム語</option>
+                                                    <option value="id" >インドネシア語</option>
+                                                    <option value="it" >イタリア語</option>
+                                                    <option value="nl" >オランダ語</option>
+                                                    <option value="ru" >ロシア語</option>
+                                                    <option value="pl" >ポーランド語</option>
+                                                    <option value="sv" >スウェーデン語</option>
+                                                    <option value="tr" >トルコ語</option>
+                                                    <option value="ar" >アラビア語</option>
+                                                    <option value="hi" >ヒンディー語</option>
+                                                    <option value="uk" >ウクライナ語</option>
+                                                    <option value="cs" >チェコ語</option>
+                                                    <option value="da" >デンマーク語</option>
+                                                    <option value="fi" >フィンランド語</option>
+                                                    <option value="no" >ノルウェー語</option>
+                                                    <option value="el" >ギリシャ語</option>
+                                                    <option value="he" >ヘブライ語</option>
+                                                    <option value="hu" >ハンガリー語</option>
+                                                    <option value="ms" >マレー語</option>
+                                                    <option value="tl" >タガログ語</option>
+                                                    <option value="auto" >共通</option>
+                                            </select>
+                    <input type="text" name="source_term" value="access permissions" required>
+                    <span class="time-arrow">→</span>
+                                        <select name="target_lang" title="訳語の言語">
+                                                    <option value="ja" selected>日本語</option>
+                                                    <option value="zh-Hans" >中国語（簡体字）</option>
+                                                    <option value="zh-Hant" >中国語（繁体字）</option>
+                                                    <option value="ko" >韓国語</option>
+                                                    <option value="en" >英語</option>
+                                                    <option value="de" >ドイツ語</option>
+                                                    <option value="fr" >フランス語</option>
+                                                    <option value="es" >スペイン語</option>
+                                                    <option value="pt" >ポルトガル語</option>
+                                                    <option value="th" >タイ語</option>
+                                                    <option value="vi" >ベトナム語</option>
+                                                    <option value="id" >インドネシア語</option>
+                                            </select>
+                    <input type="text" name="target_term" value="アクセス権限" required>
+                    <input type="text" name="note" value="" placeholder="メモ">
+                    <button class="btn" type="submit">更新</button>
+                </form>
+                <form method="post" action="/subtitlesmith2/glossary/5/delete"
+                      onsubmit="return confirm('削除しますか？');">
+                    <button class="btn danger" type="submit">削除</button>
+                </form>
+            </div>
+                    <div class="gloss-item">
+                <form class="gloss-row" method="post" action="/subtitlesmith2/glossary/6">
+                    <select name="source_lang">
+                                                    <option value="ja" >日本語</option>
+                                                    <option value="zh-Hans" >中国語（簡体字）</option>
+                                                    <option value="zh-Hant" >中国語（繁体字）</option>
+                                                    <option value="ko" >韓国語</option>
+                                                    <option value="en" selected>英語</option>
+                                                    <option value="de" >ドイツ語</option>
+                                                    <option value="fr" >フランス語</option>
+                                                    <option value="es" >スペイン語</option>
+                                                    <option value="pt" >ポルトガル語</option>
+                                                    <option value="th" >タイ語</option>
+                                                    <option value="vi" >ベトナム語</option>
+                                                    <option value="id" >インドネシア語</option>
+                                                    <option value="it" >イタリア語</option>
+                                                    <option value="nl" >オランダ語</option>
+                                                    <option value="ru" >ロシア語</option>
+                                                    <option value="pl" >ポーランド語</option>
+                                                    <option value="sv" >スウェーデン語</option>
+                                                    <option value="tr" >トルコ語</option>
+                                                    <option value="ar" >アラビア語</option>
+                                                    <option value="hi" >ヒンディー語</option>
+                                                    <option value="uk" >ウクライナ語</option>
+                                                    <option value="cs" >チェコ語</option>
+                                                    <option value="da" >デンマーク語</option>
+                                                    <option value="fi" >フィンランド語</option>
+                                                    <option value="no" >ノルウェー語</option>
+                                                    <option value="el" >ギリシャ語</option>
+                                                    <option value="he" >ヘブライ語</option>
+                                                    <option value="hu" >ハンガリー語</option>
+                                                    <option value="ms" >マレー語</option>
+                                                    <option value="tl" >タガログ語</option>
+                                                    <option value="auto" >共通</option>
+                                            </select>
+                    <input type="text" name="source_term" value="dataset" required>
+                    <span class="time-arrow">→</span>
+                                        <select name="target_lang" title="訳語の言語">
+                                                    <option value="ja" selected>日本語</option>
+                                                    <option value="zh-Hans" >中国語（簡体字）</option>
+                                                    <option value="zh-Hant" >中国語（繁体字）</option>
+                                                    <option value="ko" >韓国語</option>
+                                                    <option value="en" >英語</option>
+                                                    <option value="de" >ドイツ語</option>
+                                                    <option value="fr" >フランス語</option>
+                                                    <option value="es" >スペイン語</option>
+                                                    <option value="pt" >ポルトガル語</option>
+                                                    <option value="th" >タイ語</option>
+                                                    <option value="vi" >ベトナム語</option>
+                                                    <option value="id" >インドネシア語</option>
+                                            </select>
+                    <input type="text" name="target_term" value="データセット" required>
+                    <input type="text" name="note" value="" placeholder="メモ">
+                    <button class="btn" type="submit">更新</button>
+                </form>
+                <form method="post" action="/subtitlesmith2/glossary/6/delete"
+                      onsubmit="return confirm('削除しますか？');">
+                    <button class="btn danger" type="submit">削除</button>
+                </form>
+            </div>
+                    <div class="gloss-item">
+                <form class="gloss-row" method="post" action="/subtitlesmith2/glossary/2">
+                    <select name="source_lang">
+                                                    <option value="ja" >日本語</option>
+                                                    <option value="zh-Hans" >中国語（簡体字）</option>
+                                                    <option value="zh-Hant" >中国語（繁体字）</option>
+                                                    <option value="ko" >韓国語</option>
+                                                    <option value="en" selected>英語</option>
+                                                    <option value="de" >ドイツ語</option>
+                                                    <option value="fr" >フランス語</option>
+                                                    <option value="es" >スペイン語</option>
+                                                    <option value="pt" >ポルトガル語</option>
+                                                    <option value="th" >タイ語</option>
+                                                    <option value="vi" >ベトナム語</option>
+                                                    <option value="id" >インドネシア語</option>
+                                                    <option value="it" >イタリア語</option>
+                                                    <option value="nl" >オランダ語</option>
+                                                    <option value="ru" >ロシア語</option>
+                                                    <option value="pl" >ポーランド語</option>
+                                                    <option value="sv" >スウェーデン語</option>
+                                                    <option value="tr" >トルコ語</option>
+                                                    <option value="ar" >アラビア語</option>
+                                                    <option value="hi" >ヒンディー語</option>
+                                                    <option value="uk" >ウクライナ語</option>
+                                                    <option value="cs" >チェコ語</option>
+                                                    <option value="da" >デンマーク語</option>
+                                                    <option value="fi" >フィンランド語</option>
+                                                    <option value="no" >ノルウェー語</option>
+                                                    <option value="el" >ギリシャ語</option>
+                                                    <option value="he" >ヘブライ語</option>
+                                                    <option value="hu" >ハンガリー語</option>
+                                                    <option value="ms" >マレー語</option>
+                                                    <option value="tl" >タガログ語</option>
+                                                    <option value="auto" >共通</option>
+                                            </select>
+                    <input type="text" name="source_term" value="deployment" required>
+                    <span class="time-arrow">→</span>
+                                        <select name="target_lang" title="訳語の言語">
+                                                    <option value="ja" selected>日本語</option>
+                                                    <option value="zh-Hans" >中国語（簡体字）</option>
+                                                    <option value="zh-Hant" >中国語（繁体字）</option>
+                                                    <option value="ko" >韓国語</option>
+                                                    <option value="en" >英語</option>
+                                                    <option value="de" >ドイツ語</option>
+                                                    <option value="fr" >フランス語</option>
+                                                    <option value="es" >スペイン語</option>
+                                                    <option value="pt" >ポルトガル語</option>
+                                                    <option value="th" >タイ語</option>
+                                                    <option value="vi" >ベトナム語</option>
+                                                    <option value="id" >インドネシア語</option>
+                                            </select>
+                    <input type="text" name="target_term" value="デプロイ" required>
+                    <input type="text" name="note" value="" placeholder="メモ">
+                    <button class="btn" type="submit">更新</button>
+                </form>
+                <form method="post" action="/subtitlesmith2/glossary/2/delete"
+                      onsubmit="return confirm('削除しますか？');">
+                    <button class="btn danger" type="submit">削除</button>
+                </form>
+            </div>
+                    <div class="gloss-item">
+                <form class="gloss-row" method="post" action="/subtitlesmith2/glossary/4">
+                    <select name="source_lang">
+                                                    <option value="ja" >日本語</option>
+                                                    <option value="zh-Hans" >中国語（簡体字）</option>
+                                                    <option value="zh-Hant" >中国語（繁体字）</option>
+                                                    <option value="ko" >韓国語</option>
+                                                    <option value="en" selected>英語</option>
+                                                    <option value="de" >ドイツ語</option>
+                                                    <option value="fr" >フランス語</option>
+                                                    <option value="es" >スペイン語</option>
+                                                    <option value="pt" >ポルトガル語</option>
+                                                    <option value="th" >タイ語</option>
+                                                    <option value="vi" >ベトナム語</option>
+                                                    <option value="id" >インドネシア語</option>
+                                                    <option value="it" >イタリア語</option>
+                                                    <option value="nl" >オランダ語</option>
+                                                    <option value="ru" >ロシア語</option>
+                                                    <option value="pl" >ポーランド語</option>
+                                                    <option value="sv" >スウェーデン語</option>
+                                                    <option value="tr" >トルコ語</option>
+                                                    <option value="ar" >アラビア語</option>
+                                                    <option value="hi" >ヒンディー語</option>
+                                                    <option value="uk" >ウクライナ語</option>
+                                                    <option value="cs" >チェコ語</option>
+                                                    <option value="da" >デンマーク語</option>
+                                                    <option value="fi" >フィンランド語</option>
+                                                    <option value="no" >ノルウェー語</option>
+                                                    <option value="el" >ギリシャ語</option>
+                                                    <option value="he" >ヘブライ語</option>
+                                                    <option value="hu" >ハンガリー語</option>
+                                                    <option value="ms" >マレー語</option>
+                                                    <option value="tl" >タガログ語</option>
+                                                    <option value="auto" >共通</option>
+                                            </select>
+                    <input type="text" name="source_term" value="fine-tuning" required>
+                    <span class="time-arrow">→</span>
+                                        <select name="target_lang" title="訳語の言語">
+                                                    <option value="ja" selected>日本語</option>
+                                                    <option value="zh-Hans" >中国語（簡体字）</option>
+                                                    <option value="zh-Hant" >中国語（繁体字）</option>
+                                                    <option value="ko" >韓国語</option>
+                                                    <option value="en" >英語</option>
+                                                    <option value="de" >ドイツ語</option>
+                                                    <option value="fr" >フランス語</option>
+                                                    <option value="es" >スペイン語</option>
+                                                    <option value="pt" >ポルトガル語</option>
+                                                    <option value="th" >タイ語</option>
+                                                    <option value="vi" >ベトナム語</option>
+                                                    <option value="id" >インドネシア語</option>
+                                            </select>
+                    <input type="text" name="target_term" value="ファインチューニング" required>
+                    <input type="text" name="note" value="" placeholder="メモ">
+                    <button class="btn" type="submit">更新</button>
+                </form>
+                <form method="post" action="/subtitlesmith2/glossary/4/delete"
+                      onsubmit="return confirm('削除しますか？');">
+                    <button class="btn danger" type="submit">削除</button>
+                </form>
+            </div>
+                    <div class="gloss-item">
+                <form class="gloss-row" method="post" action="/subtitlesmith2/glossary/3">
+                    <select name="source_lang">
+                                                    <option value="ja" >日本語</option>
+                                                    <option value="zh-Hans" >中国語（簡体字）</option>
+                                                    <option value="zh-Hant" >中国語（繁体字）</option>
+                                                    <option value="ko" >韓国語</option>
+                                                    <option value="en" selected>英語</option>
+                                                    <option value="de" >ドイツ語</option>
+                                                    <option value="fr" >フランス語</option>
+                                                    <option value="es" >スペイン語</option>
+                                                    <option value="pt" >ポルトガル語</option>
+                                                    <option value="th" >タイ語</option>
+                                                    <option value="vi" >ベトナム語</option>
+                                                    <option value="id" >インドネシア語</option>
+                                                    <option value="it" >イタリア語</option>
+                                                    <option value="nl" >オランダ語</option>
+                                                    <option value="ru" >ロシア語</option>
+                                                    <option value="pl" >ポーランド語</option>
+                                                    <option value="sv" >スウェーデン語</option>
+                                                    <option value="tr" >トルコ語</option>
+                                                    <option value="ar" >アラビア語</option>
+                                                    <option value="hi" >ヒンディー語</option>
+                                                    <option value="uk" >ウクライナ語</option>
+                                                    <option value="cs" >チェコ語</option>
+                                                    <option value="da" >デンマーク語</option>
+                                                    <option value="fi" >フィンランド語</option>
+                                                    <option value="no" >ノルウェー語</option>
+                                                    <option value="el" >ギリシャ語</option>
+                                                    <option value="he" >ヘブライ語</option>
+                                                    <option value="hu" >ハンガリー語</option>
+                                                    <option value="ms" >マレー語</option>
+                                                    <option value="tl" >タガログ語</option>
+                                                    <option value="auto" >共通</option>
+                                            </select>
+                    <input type="text" name="source_term" value="integrations tab" required>
+                    <span class="time-arrow">→</span>
+                                        <select name="target_lang" title="訳語の言語">
+                                                    <option value="ja" selected>日本語</option>
+                                                    <option value="zh-Hans" >中国語（簡体字）</option>
+                                                    <option value="zh-Hant" >中国語（繁体字）</option>
+                                                    <option value="ko" >韓国語</option>
+                                                    <option value="en" >英語</option>
+                                                    <option value="de" >ドイツ語</option>
+                                                    <option value="fr" >フランス語</option>
+                                                    <option value="es" >スペイン語</option>
+                                                    <option value="pt" >ポルトガル語</option>
+                                                    <option value="th" >タイ語</option>
+                                                    <option value="vi" >ベトナム語</option>
+                                                    <option value="id" >インドネシア語</option>
+                                            </select>
+                    <input type="text" name="target_term" value="連携タブ" required>
+                    <input type="text" name="note" value="画面上の表記に合わせる" placeholder="メモ">
+                    <button class="btn" type="submit">更新</button>
+                </form>
+                <form method="post" action="/subtitlesmith2/glossary/3/delete"
+                      onsubmit="return confirm('削除しますか？');">
+                    <button class="btn danger" type="submit">削除</button>
+                </form>
+            </div>
+                    <div class="gloss-item">
+                <form class="gloss-row" method="post" action="/subtitlesmith2/glossary/1">
+                    <select name="source_lang">
+                                                    <option value="ja" >日本語</option>
+                                                    <option value="zh-Hans" >中国語（簡体字）</option>
+                                                    <option value="zh-Hant" >中国語（繁体字）</option>
+                                                    <option value="ko" >韓国語</option>
+                                                    <option value="en" selected>英語</option>
+                                                    <option value="de" >ドイツ語</option>
+                                                    <option value="fr" >フランス語</option>
+                                                    <option value="es" >スペイン語</option>
+                                                    <option value="pt" >ポルトガル語</option>
+                                                    <option value="th" >タイ語</option>
+                                                    <option value="vi" >ベトナム語</option>
+                                                    <option value="id" >インドネシア語</option>
+                                                    <option value="it" >イタリア語</option>
+                                                    <option value="nl" >オランダ語</option>
+                                                    <option value="ru" >ロシア語</option>
+                                                    <option value="pl" >ポーランド語</option>
+                                                    <option value="sv" >スウェーデン語</option>
+                                                    <option value="tr" >トルコ語</option>
+                                                    <option value="ar" >アラビア語</option>
+                                                    <option value="hi" >ヒンディー語</option>
+                                                    <option value="uk" >ウクライナ語</option>
+                                                    <option value="cs" >チェコ語</option>
+                                                    <option value="da" >デンマーク語</option>
+                                                    <option value="fi" >フィンランド語</option>
+                                                    <option value="no" >ノルウェー語</option>
+                                                    <option value="el" >ギリシャ語</option>
+                                                    <option value="he" >ヘブライ語</option>
+                                                    <option value="hu" >ハンガリー語</option>
+                                                    <option value="ms" >マレー語</option>
+                                                    <option value="tl" >タガログ語</option>
+                                                    <option value="auto" >共通</option>
+                                            </select>
+                    <input type="text" name="source_term" value="region" required>
+                    <span class="time-arrow">→</span>
+                                        <select name="target_lang" title="訳語の言語">
+                                                    <option value="ja" selected>日本語</option>
+                                                    <option value="zh-Hans" >中国語（簡体字）</option>
+                                                    <option value="zh-Hant" >中国語（繁体字）</option>
+                                                    <option value="ko" >韓国語</option>
+                                                    <option value="en" >英語</option>
+                                                    <option value="de" >ドイツ語</option>
+                                                    <option value="fr" >フランス語</option>
+                                                    <option value="es" >スペイン語</option>
+                                                    <option value="pt" >ポルトガル語</option>
+                                                    <option value="th" >タイ語</option>
+                                                    <option value="vi" >ベトナム語</option>
+                                                    <option value="id" >インドネシア語</option>
+                                            </select>
+                    <input type="text" name="target_term" value="リージョン" required>
+                    <input type="text" name="note" value="クラウドの地域" placeholder="メモ">
+                    <button class="btn" type="submit">更新</button>
+                </form>
+                <form method="post" action="/subtitlesmith2/glossary/1/delete"
+                      onsubmit="return confirm('削除しますか？');">
+                    <button class="btn danger" type="submit">削除</button>
+                </form>
+            </div>
+                    <div class="gloss-item">
+                <form class="gloss-row" method="post" action="/subtitlesmith2/glossary/7">
+                    <select name="source_lang">
+                                                    <option value="ja" >日本語</option>
+                                                    <option value="zh-Hans" >中国語（簡体字）</option>
+                                                    <option value="zh-Hant" >中国語（繁体字）</option>
+                                                    <option value="ko" >韓国語</option>
+                                                    <option value="en" selected>英語</option>
+                                                    <option value="de" >ドイツ語</option>
+                                                    <option value="fr" >フランス語</option>
+                                                    <option value="es" >スペイン語</option>
+                                                    <option value="pt" >ポルトガル語</option>
+                                                    <option value="th" >タイ語</option>
+                                                    <option value="vi" >ベトナム語</option>
+                                                    <option value="id" >インドネシア語</option>
+                                                    <option value="it" >イタリア語</option>
+                                                    <option value="nl" >オランダ語</option>
+                                                    <option value="ru" >ロシア語</option>
+                                                    <option value="pl" >ポーランド語</option>
+                                                    <option value="sv" >スウェーデン語</option>
+                                                    <option value="tr" >トルコ語</option>
+                                                    <option value="ar" >アラビア語</option>
+                                                    <option value="hi" >ヒンディー語</option>
+                                                    <option value="uk" >ウクライナ語</option>
+                                                    <option value="cs" >チェコ語</option>
+                                                    <option value="da" >デンマーク語</option>
+                                                    <option value="fi" >フィンランド語</option>
+                                                    <option value="no" >ノルウェー語</option>
+                                                    <option value="el" >ギリシャ語</option>
+                                                    <option value="he" >ヘブライ語</option>
+                                                    <option value="hu" >ハンガリー語</option>
+                                                    <option value="ms" >マレー語</option>
+                                                    <option value="tl" >タガログ語</option>
+                                                    <option value="auto" >共通</option>
+                                            </select>
+                    <input type="text" name="source_term" value="region" required>
+                    <span class="time-arrow">→</span>
+                                        <select name="target_lang" title="訳語の言語">
+                                                    <option value="ja" >日本語</option>
+                                                    <option value="zh-Hans" selected>中国語（簡体字）</option>
+                                                    <option value="zh-Hant" >中国語（繁体字）</option>
+                                                    <option value="ko" >韓国語</option>
+                                                    <option value="en" >英語</option>
+                                                    <option value="de" >ドイツ語</option>
+                                                    <option value="fr" >フランス語</option>
+                                                    <option value="es" >スペイン語</option>
+                                                    <option value="pt" >ポルトガル語</option>
+                                                    <option value="th" >タイ語</option>
+                                                    <option value="vi" >ベトナム語</option>
+                                                    <option value="id" >インドネシア語</option>
+                                            </select>
+                    <input type="text" name="target_term" value="区域" required>
+                    <input type="text" name="note" value="" placeholder="メモ">
+                    <button class="btn" type="submit">更新</button>
+                </form>
+                <form method="post" action="/subtitlesmith2/glossary/7/delete"
+                      onsubmit="return confirm('削除しますか？');">
+                    <button class="btn danger" type="submit">削除</button>
+                </form>
+            </div>
+            </div>
+</main>
+<footer class="site-footer muted">
+    <a href="https://github.com/haru-sudo/subtitlesmith2" rel="noopener">ソースコード</a>（GNU AGPL-3.0）
+</footer>
+</body>
+</html>
